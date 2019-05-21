@@ -8,9 +8,10 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#DDDDDD",
+    "navigationBarBackgroundColor": "#F5F5F5",
     "navigationBarTitleText": "微贝",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundColor" : "#F5F5F5"
   },
   "tabBar":{
     "list":[

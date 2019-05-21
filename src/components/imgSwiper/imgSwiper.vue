@@ -1,14 +1,16 @@
 <template>
-  <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" >
+  <swiper :indicator-dots="indicatorDots" :autoplay="autoplay"
+          :interval="interval" :duration="duration" class="imgSwiper"
+          indicator-color="#ffffff">
     <swiper-item v-for="(item,index) in imgList" :key="index">
-      <image :src="item.imgUrl" class="slide-image" width="100%"/>
+      <img :src="item.imgUrl" class="slide-image" width="100%"/>
     </swiper-item>
   </swiper>
 </template>
 
 <script>
   export default {
-    name: "swiper",
+    name: "imgSwiper",
     data() {
       return {
         imgList: [
@@ -30,5 +32,8 @@
 </script>
 
 <style scoped>
-
+.imgSwiper image{
+  width: 100%;
+  height: 300rpx;
+}
 </style>
