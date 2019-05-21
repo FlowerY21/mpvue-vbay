@@ -1,6 +1,10 @@
 {
   "pages":[
-    "pages/home/main"
+    "pages/home/main",
+    "pages/find/main",
+    "pages/vip/main",
+    "pages/wallet/main",
+    "pages/my/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,7 +21,22 @@
         "selectedIconPath": "static/tabs/home-active.png"
       },{
         "text": "发现",
-        "pagePath": "pages/home/main",
+        "pagePath": "pages/find/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },{
+        "text": "会员",
+        "pagePath": "pages/vip/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },{
+        "text": "钱包",
+        "pagePath": "pages/wallet/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },{
+        "text": "我的",
+        "pagePath": "pages/my/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       }
