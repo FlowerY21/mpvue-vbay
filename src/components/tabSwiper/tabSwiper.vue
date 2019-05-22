@@ -7,13 +7,14 @@
         </swiper-item>
       </swiper>
     </div>
-    <home-list></home-list>
+
     <div class="content-box">
-      <swiper :autoplay="autoplay">
-        <swiper-item v-for="(item,index) in contentList" :key="index">
-          <home-list></home-list>
-        </swiper-item>
-      </swiper>
+      <home-list></home-list>
+      <!--<swiper :autoplay="autoplay">-->
+        <!--<swiper-item v-for="(item,index) in contentList" :key="index">-->
+          <!--<home-list></home-list>-->
+        <!--</swiper-item>-->
+      <!--</swiper>-->
     </div>
 
   </div>
@@ -47,7 +48,7 @@ export default {
           label: '活动'
         }
       ],
-      contentList: [{}],
+      contentList: [{},{}],
       autoplay: false,
       multipleItem: 5
     }
@@ -74,5 +75,8 @@ export default {
   }
   .content-box{
     padding: 40rpx 30rpx;
+  }
+  .content-box swiper{
+    height: 1500rpx;
   }
 </style>
