@@ -1,20 +1,15 @@
 <template>
   <div class="content-warper">
     <div class="tab-container">
-      <swiper :autoplay="autoplay" :display-multiple-items="multipleItem" previous-margin="50rpx">
-        <swiper-item v-for="(item,index) in tabList" :key="index">
-          <p @tap="tabChange">{{item.label}}</p>
+      <swiper :autoplay="autoplay" :display-multiple-items="multipleItem">
+        <swiper-item v-for="(item,index) in tabList" :key="index" @tap="tabChange(index)" :class="{'on':index == showClass}">
+          <p>{{item.label}}</p>
         </swiper-item>
       </swiper>
     </div>
 
-    <div class="content-box">
+    <div class="content-box common-padding">
       <home-list></home-list>
-      <!--<swiper :autoplay="autoplay">-->
-        <!--<swiper-item v-for="(item,index) in contentList" :key="index">-->
-          <!--<home-list></home-list>-->
-        <!--</swiper-item>-->
-      <!--</swiper>-->
     </div>
 
   </div>
@@ -50,12 +45,13 @@ export default {
       ],
       contentList: [{},{}],
       autoplay: false,
-      multipleItem: 5
+      multipleItem: 5,
+      showClass:'',
     }
   },
   methods: {
-    tabChange(e) {
-      console.log(e)
+    tabChange(index) {
+      this.showClass = index;
     }
   }
 }
@@ -72,11 +68,28 @@ export default {
   .tab-container p {
     font-size: 28rpx;
     line-height: 80rpx;
+    text-align: center;
+    position: relative;
   }
   .content-box{
-    padding: 40rpx 30rpx;
+    padding-top: 40rpx;
+    padding-bottom: 40rpx;
   }
-  .content-box swiper{
-    height: 1500rpx;
+  .tab-container .on p{
+    font-size: 32rpx;
+  }
+  .tab-container .on p::after{
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 10rpx;
+    background: #00B2B2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-border-radius: 10rpx;
+    -moz-border-radius: 10rpx;
+    border-radius: 10rpx;
   }
 </style>

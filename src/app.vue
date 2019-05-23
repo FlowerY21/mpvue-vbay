@@ -40,4 +40,14 @@ export default {
     justify-content: space-between;
   }
 
+  .common-padding{
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+  }
+
+  .star-icon{
+    width: 24rpx;
+    height: 24rpx;
+  }
+
 </style>

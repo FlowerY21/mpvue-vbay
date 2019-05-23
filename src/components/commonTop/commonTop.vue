@@ -1,9 +1,11 @@
 <template>
-  <div class="top-container flex-row absolute-center">
-    <!--<span v-if="showLeft" class=""></span>-->
+  <div class="top-container flex-row vertical-center flow-justify common-padding">
+    <div class="back-btn" @tap="goBack">
+      <img src="../../../static/images/back.png" alt="">
+    </div>
     <!--<slot v-else name="left"></slot>-->
     <p v-if="showTitle" class="title">{{title}}</p>
-    <div v-else class="search-container flex-row vertical-center">
+    <div v-else class="search-container flex-row vertical-center" @tap="bindfocus">
       <icon type="search" size="20" class="icon-search" />
       <input type="search" :value="value">
     </div>
@@ -33,6 +35,19 @@ export default {
     return{
       value:'',
     }
+  },
+  methods:{
+    goBack(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },
+    bindfocus(){
+      console.log(1)
+      wx.navigateTo({
+        url: '../search/main'
+      })
+    }
   }
 }
 </script>
@@ -42,19 +57,24 @@ export default {
     background: #F5F5F5;
     width: 100%;
     height: 110rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid #bbbbbb;
   }
   .search-container{
     position: relative;
   }
   .search-container icon{
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    position: absolute;;
     left: 10rpx;
     margin: auto;
   }
   .search-container input{
     height: 60rpx;
+    padding-left: 60rpx;
     background: #ffffff;
+  }
+  .back-btn img{
+    width: 40rpx;
+    height: 40rpx;
   }
 </style>

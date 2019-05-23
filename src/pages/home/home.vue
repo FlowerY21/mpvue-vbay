@@ -1,6 +1,13 @@
 <template>
   <div>
-    <common-top></common-top>
+    <common-top>
+      <div slot="right" >
+        <div class="add-button">
+          <img src="../../../static/images/add.png" alt="">
+        </div>
+
+      </div>
+    </common-top>
     <img-swiper></img-swiper>
     <tab-swiper></tab-swiper>
   </div>
@@ -26,5 +33,16 @@
 </script>
 
 <style scoped>
-
+  page{
+    background: #f5f5f5;
+  }
+  .add-button{
+    width: 40rpx;
+    height: 40rpx;
+    overflow: hidden;
+  }
+  .add-button img{
+    width: 100%;
+    height: 100%;
+  }
 </style>
