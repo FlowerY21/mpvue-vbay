@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="login-button" @tap="goLogin">登录</button>
+    <button class="login-button" open-type="getUserInfo"  @getUserInfo="getUserInfo">登录</button>
   </div>
 </template>
 
@@ -14,15 +14,11 @@ export default {
     }
   },
   mounted(){
-    wx.getUserInfo({
-      success(res) {
-        console.log(res)
-      }
-    })
+
   },
   methods:{
-    goLogin(){
-
+    getUserInfo(e){
+      console.log(e)
     }
   }
 }

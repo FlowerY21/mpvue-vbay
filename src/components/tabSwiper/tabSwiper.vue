@@ -9,7 +9,7 @@
     </div>
 
     <div class="content-box common-padding">
-      <home-list></home-list>
+      <home-list :tabIndex="showClass"></home-list>
     </div>
 
   </div>

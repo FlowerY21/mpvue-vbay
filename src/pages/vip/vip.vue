@@ -1,16 +1,17 @@
 <template>
   <div>
-    <p>vip</p>
+    <!--<common-select>1</common-select>-->
     <vip-list></vip-list>
   </div>
 </template>
 
 <script>
 import vipList from '@/components/vipList/vipList'
+import commonSelect from '@/components/commonSelect/commonSelect'
 export default {
   name: "vip",
   components:{
-    vipList
+    vipList,commonSelect
   }
 }
 </script>

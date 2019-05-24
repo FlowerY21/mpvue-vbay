@@ -5,7 +5,6 @@
         <div class="add-button">
           <img src="../../../static/images/add.png" alt="">
         </div>
-
       </div>
     </common-top>
     <img-swiper></img-swiper>
@@ -28,13 +27,17 @@
       return {
 
       }
+    },
+    methods:{
+
     }
   }
 </script>
 
 <style scoped>
-  page{
-    background: #f5f5f5;
+  page {
+    background-color: #f5f5f5;
+    height: 100%;
   }
   .add-button{
     width: 40rpx;

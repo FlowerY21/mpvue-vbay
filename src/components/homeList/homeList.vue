@@ -1,5 +1,8 @@
 <template>
   <div class="home-list">
+    <div class="list-tab flex-row vertical-center" v-if="tabIndex == 2">
+      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabIndex == index2}">{{item.value}}</p>
+    </div>
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index">
       <div>
         <div class="flex-row flow-justify">
@@ -54,8 +57,32 @@
 <script>
 export default {
   name: "homeList",
+  props:{
+    tabIndex:{
+      type:String,
+      default:'0',
+    }
+  },
   data() {
     return {
+      listTabs:[
+        {
+          id:0,
+          value:'全部'
+        },{
+          id:1,
+          value:'Asian'
+        },{
+          id:2,
+          value:'Cafe'
+        },{
+          id:3,
+          value:'Chinese'
+        },{
+          id:4,
+          value:'Casual Dining'
+        },
+      ],
       details: [
         {
           title: '北悉尼商会',
@@ -107,7 +134,12 @@ export default {
           ]
         }
       ],
-
+      tabIndex:'',
+    }
+  },
+  methods:{
+    clickListTap(index){
+      this.tabIndex = index;
     }
   }
 }
@@ -170,5 +202,15 @@ export default {
     width: 100%;
     height: 260rpx;
     border-radius: 10rpx;
+  }
+
+  .list-tab p{
+    font-size: 28rpx;
+    color: #101010;
+    margin-right: 28rpx;
+  }
+
+  .list-tab .on{
+    color: #00B2B2;
   }
 </style>
