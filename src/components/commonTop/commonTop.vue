@@ -1,8 +1,18 @@
 <template>
   <div class="top-container flex-row vertical-center flow-justify common-padding">
-    <div class="back-btn" @tap="goBack">
-      <img src="../../../static/images/back.png" alt="">
+    <!--<div class="back-btn" @tap="goBack">-->
+      <!--<img src="../../../static/images/back.png" alt="">-->
+    <!--</div>-->
+    <div class="back-btn">
+      <picker
+        mode="region"
+        @change="bindRegionChange"
+        :value="region"
+      >
+        <p>{{region[2]}}</p>
+      </picker>
     </div>
+
     <!--<slot v-else name="left"></slot>-->
     <p v-if="showTitle" class="title">{{title}}</p>
     <div v-else class="search-container flex-row vertical-center" @tap="bindfocus">
@@ -34,6 +44,7 @@ export default {
   data(){
     return{
       value:'',
+      region: ['辽宁省', '沈阳市', '于洪区'],
     }
   },
   methods:{
@@ -43,10 +54,12 @@ export default {
       })
     },
     bindfocus(){
-      console.log(1)
       wx.navigateTo({
         url: '../search/main'
       })
+    },
+    bindRegionChange(e){
+      this.region = e.mp.detail.value
     }
   }
 }
@@ -76,5 +89,8 @@ export default {
   .back-btn img{
     width: 40rpx;
     height: 40rpx;
+  }
+  .back-btn{
+    font-size: 28rpx;
   }
 </style>

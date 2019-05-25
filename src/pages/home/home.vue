@@ -35,10 +35,6 @@
 </script>
 
 <style scoped>
-  page {
-    background-color: #f5f5f5;
-    height: 100%;
-  }
   .add-button{
     width: 40rpx;
     height: 40rpx;

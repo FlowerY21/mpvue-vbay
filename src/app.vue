@@ -6,6 +6,10 @@ export default {
 </script>
 
 <style>
+  page {
+    background-color: #f5f5f5;
+    height: 100%;
+  }
   .flex-1 {
     flex: 1;
   }

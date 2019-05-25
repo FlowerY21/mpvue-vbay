@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<common-select>1</common-select>-->
+    <common-select></common-select>
     <vip-list></vip-list>
   </div>
 </template>

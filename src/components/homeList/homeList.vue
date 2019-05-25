@@ -1,7 +1,7 @@
 <template>
   <div class="home-list">
     <div class="list-tab flex-row vertical-center" v-if="tabIndex == 2">
-      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabIndex == index2}">{{item.value}}</p>
+      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">{{item.value}}</p>
     </div>
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index">
       <div>
@@ -24,32 +24,32 @@
           </div>
         </div>
         <div v-else>
+          <video class="video-size" object-fit="cover" play-btn-position="center" controls="true" :poster="info.videoImg" :src="info.videoUrl"></video>
+        </div>
+      </div>
+      <div v-if="tabShow == 6">
+        <div class="flex-row flow-justify">
+          <h3 class="title">{{info.title}}</h3>
+          <div class="flex-row vertical-center">
+            <img class="star-icon" src="../../../static/images/start.png" alt="star-icon">
+            <span class="score">{{info.score}}</span>
+          </div>
+        </div>
+        <div class="flex-row title-center">
+          <span class="iconfont icon-position"></span>
+          <p class="nextTitle">{{info.length}} km | {{info.address}}</p>
+        </div>
+        <p class="nextTitle">{{info.type}}, {{info.country}}</p>
+        <div class="flex-row flow-justify" v-if="info.imgList.length>0">
+          <div v-for="(item,index2) in info.imgList" :key="index2">
+            <div class="list-img-box" :style="'background: url('+item.imgUrl+') center/cover no-repeat'"></div>
+            <p class="list-img-name">{{item.name}}</p>
+          </div>
+        </div>
+        <div v-else>
           <video class="video-size" controls="true" :poster="info.videoImg" :src="info.videoUrl"></video>
         </div>
       </div>
-      <!--<div>-->
-        <!--<div class="flex-row flow-justify">-->
-          <!--<h3 class="title">{{info.title}}</h3>-->
-          <!--<div class="flex-row vertical-center">-->
-            <!--<img class="star-icon" src="../../../static/images/start.png" alt="star-icon">-->
-            <!--<span class="score">{{info.score}}</span>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="flex-row title-center">-->
-          <!--<span class="iconfont icon-position"></span>-->
-          <!--<p class="nextTitle">{{info.length}} km | {{info.address}}</p>-->
-        <!--</div>-->
-        <!--<p class="nextTitle">{{info.type}}, {{info.country}}</p>-->
-        <!--<div class="flex-row flow-justify" v-if="info.imgList.length>0">-->
-          <!--<div v-for="(item,index2) in info.imgList" :key="index2">-->
-            <!--<div class="list-img-box" :style="'background: url('+item.imgUrl+') center/cover no-repeat'"></div>-->
-            <!--<p class="list-img-name">{{item.name}}</p>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div v-else>-->
-          <!--<video class="video-size" controls="true" :poster="info.videoImg" :src="info.videoUrl"></video>-->
-        <!--</div>-->
-      <!--</div>-->
     </div>
   </div>
 </template>
@@ -134,12 +134,12 @@ export default {
           ]
         }
       ],
-      tabIndex:'',
+      tabShow:'',
     }
   },
   methods:{
     clickListTap(index){
-      this.tabIndex = index;
+      this.tabShow = index;
     }
   }
 }
