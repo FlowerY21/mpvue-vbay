@@ -5,7 +5,9 @@
     "pages/myPage/my/main",
     "pages/homePage/search/main",
     "pages/index/main",
-    "pages/businessPage/business/main"
+    "pages/businessPage/business/main",
+    "pages/businessPage/predetermine/main",
+    "pages/businessPage/reservationRecord/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

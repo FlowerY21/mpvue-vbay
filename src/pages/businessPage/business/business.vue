@@ -2,47 +2,58 @@
   <div>
     <div class="business-img" :style="'background:url('+bigImgUrl+') center/cover no-repeat'"></div>
     <div class="common-padding">
-      <p class="business-title">北悉尼商会</p>
-      <div class="flex-row vertical-center flow-justify">
-        <div class="flex-row vertical-center">
-          <img class="star-icon" src="../../../../static/images/start.png" alt="star-icon">
-          <span class="score">4.6</span>
+      <div class="business-content-box">
+        <p class="business-title">北悉尼商会</p>
+        <div class="flex-row vertical-center flow-justify">
+          <div class="flex-row vertical-center">
+            <img class="star-icon" src="../../../../static/images/start.png" alt="star-icon">
+            <span class="score">4.6</span>
+          </div>
+          <p class="nextTitle">泰国菜, Vietnamese</p>
         </div>
-        <p class="nextTitle">泰国菜, Vietnamese</p>
-      </div>
-      <div class="business-status">
-        <p>营业中 | 08：00-22：00</p>
-      </div>
-      <div class="flex-row vertical-center flow-justify">
-        <div class="flex-row business-address">
-          <img src="../../../../static/images/position-fill.png" alt="positionIcon" class="position-icon">
-          <p class="nextTitle">47 Willoughby road, Crows Nest, Sydney...</p>
+        <div class="business-status">
+          <p>营业中 | 08：00-22：00</p>
         </div>
-        <div class="flex-row vertical-center">
-          <img src="../../../../static/images/plane.png" alt="planeIcon" class="plane-icon">
-          <div class="line"></div>
-          <img src="../../../../static/images/phone.png" alt="phoneIcon" class="phone-icon">
+        <div class="flex-row vertical-center flow-justify">
+          <div class="flex-row business-address">
+            <img src="../../../../static/images/position-fill.png" alt="positionIcon" class="position-icon">
+            <p class="nextTitle">47 Willoughby road, Crows Nest, Sydney...</p>
+          </div>
+          <div class="flex-row vertical-center">
+            <img src="../../../../static/images/plane.png" alt="planeIcon" class="plane-icon">
+            <div class="line"></div>
+            <img src="../../../../static/images/phone.png" alt="phoneIcon" class="phone-icon">
+          </div>
+        </div>
+        <div class="button-box flex-row vertical-center flow-justify">
+          <button class="button-class" type="default" plain="true" @tap="goPage()" >预定</button>
+          <button class="button-class" type="default" plain="true" bindtap="default" >付款</button>
+        </div>
+        <div class="list-tab flex-row vertical-center">
+          <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
+            {{item.value}}</p>
         </div>
       </div>
-      <div class="button-box flex-row vertical-center flow-justify">
-        <button class="button-class" type="default" plain="true" bindtap="default" >预定</button>
-        <button class="button-class" type="default" plain="true" bindtap="default" >付款</button>
+      <div class="business-content-list">
+        <vip-wrap v-if="tabShow == 3"></vip-wrap>
+        <comment v-else-if="tabShow == 1"></comment>
+        <business-list v-else :tabIndex="tabShow"></business-list>
       </div>
-      <div class="list-tab flex-row vertical-center">
-        <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
-          {{item.value}}</p>
-      </div>
-      <business-list></business-list>
+
     </div>
   </div>
 </template>
 
 <script>
 import businessList from '../../../components/businessList/businessList'
+import vipWrap from '../../../components/vipWrap/vipWrap'
+import comment from '../../../components/comment/comment'
 export default {
   name: "business",
   components:{
-    businessList
+    vipWrap,
+    businessList,
+    comment
   },
   data(){
     return{
@@ -76,6 +87,11 @@ export default {
   methods:{
     clickListTap(index){
       this.tabShow = index;
+    },
+    goPage(){
+      wx.navigateTo({
+        url: '../../businessPage/predetermine/main?id='+this.businessId
+      })
     }
   }
 }

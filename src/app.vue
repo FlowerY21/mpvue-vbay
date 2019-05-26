@@ -6,6 +6,12 @@ export default {
 </script>
 
 <style>
+  page{
+    background: #F5F5F5;
+  }
+  page{
+    padding-bottom: 20rpx;
+  }
   .flex-1 {
     flex: 1;
   }
@@ -86,5 +92,4 @@ export default {
     width: 50rpx;
     height: 50rpx;
   }
-
 </style>
