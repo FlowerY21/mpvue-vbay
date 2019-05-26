@@ -3,7 +3,7 @@
     <common-top>
       <div slot="right" >
         <div class="add-button">
-          <img src="../../../static/images/add.png" alt="">
+          <img src="../../../../static/images/add.png" alt="">
         </div>
       </div>
     </common-top>
@@ -13,9 +13,9 @@
 </template>
 
 <script>
-  import commonTop from '../../components/commonTop/commonTop'
-  import imgSwiper from '../../components/imgSwiper/imgSwiper'
-  import tabSwiper from '../../components/tabSwiper/tabSwiper'
+  import commonTop from '../../../components/commonTop/commonTop'
+  import imgSwiper from '../../../components/imgSwiper/imgSwiper'
+  import tabSwiper from '../../../components/tabSwiper/tabSwiper'
 
   export default {
     name: "home",
@@ -35,6 +35,10 @@
 </script>
 
 <style scoped>
+  page {
+    background-color: #f5f5f5;
+    height: 100%;
+  }
   .add-button{
     width: 40rpx;
     height: 40rpx;

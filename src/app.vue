@@ -6,10 +6,6 @@ export default {
 </script>
 
 <style>
-  page {
-    background-color: #f5f5f5;
-    height: 100%;
-  }
   .flex-1 {
     flex: 1;
   }
@@ -52,6 +48,43 @@ export default {
   .star-icon{
     width: 24rpx;
     height: 24rpx;
+  }
+
+  .position-icon {
+    width: 30rpx;
+    height: 30rpx;
+  }
+
+  .time-icon {
+    width: 24rpx;
+    height: 24rpx;
+  }
+
+  .score {
+    color: #00B2B2;
+    font-size: 24rpx;
+  }
+
+  .nextTitle {
+    color: #666666;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+  }
+
+  .mar-bottom {
+    margin-bottom: 30rpx;
+  }
+
+  .overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+  }
+
+  .plane-icon,.phone-icon{
+    width: 50rpx;
+    height: 50rpx;
   }
 
 </style>

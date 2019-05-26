@@ -1,10 +1,11 @@
 {
   "pages":[
-    "pages/home/main",
-    "pages/vip/main",
-    "pages/my/main",
-    "pages/search/main",
-    "pages/index/main"
+    "pages/homePage/home/main",
+    "pages/vipPage/vip/main",
+    "pages/myPage/my/main",
+    "pages/homePage/search/main",
+    "pages/index/main",
+    "pages/businessPage/business/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,17 +18,17 @@
     "list":[
       {
         "text": "首页",
-        "pagePath": "pages/home/main",
+        "pagePath": "pages/homePage/home/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       },{
         "text": "会员",
-        "pagePath": "pages/vip/main",
+        "pagePath": "pages/vipPage/vip/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       },{
         "text": "我的",
-        "pagePath": "pages/my/main",
+        "pagePath": "pages/myPage/my/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       }
