@@ -7,7 +7,7 @@ export default {
 
 <style>
   page{
-    background: #F5F5F5;
+    /*background: #F5F5F5;*/
   }
   page{
     padding-bottom: 20rpx;
@@ -44,6 +44,9 @@ export default {
 
   .flow-justify {
     justify-content: space-between;
+  }
+  .around-justify {
+    justify-content: space-around;
   }
 
   .common-padding{

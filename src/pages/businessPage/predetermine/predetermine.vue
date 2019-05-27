@@ -9,11 +9,21 @@
       </div>
       <div class="flex-row vertical-center">
         <p class=" record-input-label">日期</p>
+        <!--<picker mode="date" :value="date" start="2019-06-01" end="2020-09-01" @change="bindDateChange">-->
+          <!--<view class="picker">-->
+            <!--{{date}}-->
+          <!--</view>-->
+        <!--</picker>-->
         <input class="record-input" type="number"/>
       </div>
       <div class="flex-row vertical-center">
         <p class=" record-input-label">时间</p>
         <input class="record-input" type="number" />
+        <!--<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">-->
+          <!--<view class="picker">-->
+            <!--{{time}}-->
+          <!--</view>-->
+        <!--</picker>-->
       </div>
       <div class="flex-row vertical-center">
         <p class=" record-input-label">备注</p>
@@ -24,7 +34,7 @@
     <div class="card-container flex-col vertical-center">
       <p class="record-title">预订信息</p>
       <p class="record-detail">2人，5月26日，12：00</p>
-      <button type="default"  bindtap="default" class="record-button">下一步</button>
+      <button type="default"  @tap="goNext()" class="record-button">下一步</button>
     </div>
 
 
@@ -36,10 +46,29 @@
 <script>
 export default {
   name: "predetermine",
+  data(){
+    return{
+      time: '12:01',
+      date:'2019-05-27'
+    }
+  },
   methods:{
     goPages(){
       wx.navigateTo({
         url: '../../businessPage/reservationRecord/main'
+      })
+    },
+    bindTimeChange(e){
+      console.log('picker发送选择改变，携带值为', e.mp.detail.value)
+      this.time = e.mp.detail.value
+    },
+    bindDateChange(e){
+      console.log('picker发送选择改变，携带值为', e.mp.detail.value)
+      this.date = e.mp.detail.value
+    },
+    goNext(){
+      wx.navigateTo({
+        url: '../../businessPage/checkRecord/main'
       })
     }
   }
