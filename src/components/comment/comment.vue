@@ -5,7 +5,7 @@
       <div class="comment-msg">
         <div class="flex-row vertical-center flow-justify">
           <p class="user-name">赵小花</p>
-          <p class="comment-time">5月26日</p>
+          <p class="comment-gray-text">5月26日</p>
         </div>
         <div class="flex-row vertical-center">
           <p class="comment-text">打分</p>
@@ -19,7 +19,7 @@
           赵小花赵小花赵小花赵小花赵小花赵小花赵小花赵小花
           赵小花赵小花赵小花赵小花赵小花赵小花赵小花赵小花
         </p>
-        <p class="full-text">全文</p>
+        <p class="comment-gray-text">全文</p>
       </div>
     </div>
   </div>
@@ -58,10 +58,6 @@ export default {
     font-size: 30rpx;
     color: #9a9a9a;
   }
-  .comment-time{
-    font-size: 24rpx;
-    color: #9a9a9a;
-  }
   .overflow-rows{
     overflow : hidden;
     text-overflow: ellipsis;
@@ -73,9 +69,5 @@ export default {
     font-size: 28rpx;
     color: #222222;
     margin: 10rpx 10rpx 10rpx 0rpx;
-  }
-  .full-text{
-    font-size: 24rpx;
-    color: #9a9a9a;
   }
 </style>

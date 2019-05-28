@@ -7,7 +7,7 @@ export default {
 
 <style>
   page{
-    /*background: #F5F5F5;*/
+    background: #F5F5F5;
   }
   page{
     padding-bottom: 20rpx;
@@ -94,5 +94,10 @@ export default {
   .plane-icon,.phone-icon{
     width: 50rpx;
     height: 50rpx;
+  }
+
+  .comment-gray-text{
+    font-size: 24rpx;
+    color: #9a9a9a;
   }
 </style>

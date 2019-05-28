@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pay-num flex-col absolute-center">
-      <input class="pay-num-input" placeholder="输入金额" placeholder-class="input-class" auto-focus/>
+      <input class="pay-num-input" placeholder="输入金额" placeholder-style="color:#00b2b2;" auto-focus/>
       <p class="pay-num-msg">AUD</p>
     </div>
     <div class="flex-row vertical-center flow-justify back-gray common-padding">
@@ -14,17 +14,19 @@
         <img src="../../../../static/images/right.png" alt="rightIcon" class="right-icon">
       </div>
     </div>
-    <div class="common-padding">
-
-    </div>
+    <common-pay></common-pay>
   </div>
 </template>
 
 <script>
+  import commonPay from '../../../components/commonPay/commonPay'
   export default {
     name: "payment",
     data() {
       return {}
+    },
+    components:{
+      commonPay
     },
     methods: {}
   }
@@ -48,11 +50,11 @@
     color: #00B2B2;
     line-height: 100rpx;
     padding-left: 30rpx;
-    margin-bottom: 20rpx;
   }
   .pay-num-msg{
     font-size: 32rpx;
     color: #FFFFFF;
+    margin-top: 20rpx;
   }
   .input-class{
     color: #00B2B2;

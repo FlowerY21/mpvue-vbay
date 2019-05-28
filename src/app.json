@@ -10,7 +10,9 @@
     "pages/businessPage/reservationRecord/main",
     "pages/businessPage/checkRecord/main",
     "pages/businessPage/resultRecord/main",
-    "pages/businessPage/payment/main"
+    "pages/businessPage/payment/main",
+    "pages/businessPage/payType/main",
+    "pages/businessPage/payover/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,5 @@
 <template>
-  <div class="star flex-row">
+  <div class="star flex-row" :class="starSize">
     <span class="star-item" v-for="(starClass,index2) in starClasses" :key="index2" :class="starClass"></span>
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
     score: {
       type: Number,
       default: 0
+    },
+    starSize:{
+      type:String,
+      default:'small'
     }
   },
   computed: {
@@ -38,12 +42,18 @@ export default {
 </script>
 
 <style scoped>
-  .star-item {
+  .big .star-item {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 15rpx;
+  }
+  .small .star-item {
     width: 28rpx;
     height: 28rpx;
+  }
+  .star-item{
     display: block;
   }
-
   .star .on {
     background: url("../../../static/images/star_on.png") center/cover no-repeat;
   }
