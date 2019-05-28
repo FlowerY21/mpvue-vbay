@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="button-box flex-row vertical-center flow-justify">
-          <button class="button-class" type="default" plain="true" @tap="goPage()" >预定</button>
-          <button class="button-class" type="default" plain="true" bindtap="default" >付款</button>
+          <button class="button-class" type="default" plain="true" @tap="goPage(0)" >预定</button>
+          <button class="button-class" type="default" plain="true" @tap="goPage(1)" >付款</button>
         </div>
         <div class="list-tab flex-row vertical-center">
           <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
@@ -88,10 +88,17 @@ export default {
     clickListTap(index){
       this.tabShow = index;
     },
-    goPage(){
-      wx.navigateTo({
-        url: '../../businessPage/predetermine/main?id='+this.businessId
-      })
+    goPage(type){
+      if (type == 0) {
+        wx.navigateTo({
+          url: '../../businessPage/predetermine/main?id='+this.businessId
+        })
+      } else if(type == 1){
+        wx.navigateTo({
+          url: '../../businessPage/payment/main'
+        })
+      }
+
     }
   }
 }

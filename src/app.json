@@ -9,7 +9,8 @@
     "pages/businessPage/predetermine/main",
     "pages/businessPage/reservationRecord/main",
     "pages/businessPage/checkRecord/main",
-    "pages/businessPage/resultRecord/main"
+    "pages/businessPage/resultRecord/main",
+    "pages/businessPage/payment/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
