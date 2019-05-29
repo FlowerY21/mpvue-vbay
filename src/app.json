@@ -12,7 +12,9 @@
     "pages/businessPage/resultRecord/main",
     "pages/businessPage/payment/main",
     "pages/businessPage/payType/main",
-    "pages/businessPage/payover/main"
+    "pages/businessPage/payover/main",
+    "pages/businessPage/donation/main",
+    "pages/businessPage/commonResult/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

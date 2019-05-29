@@ -27,9 +27,9 @@ export default {
   },
   methods:{
     goPage(){
-      // wx.navigateTo({
-      //   url: '../../businessPage/payover/main'
-      // })
+      wx.navigateTo({
+        url: '../../businessPage/donation/main'
+      })
     }
   }
 }
