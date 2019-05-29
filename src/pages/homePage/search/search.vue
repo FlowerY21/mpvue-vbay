@@ -9,7 +9,7 @@
     <div class="common-padding">
       <p class="search-title">热门搜索</p>
       <div class="tab-container">
-        <span v-for="(word , index) in words" :key="index">{{word}}</span>
+        <span class="common-black-text" v-for="(word , index) in words" :key="index">{{word}}</span>
       </div>
     </div>
   </div>
@@ -66,8 +66,6 @@ export default {
     padding: 15rpx 30rpx;
     display: inline-block;
     background: #EEEEEE;
-    color: #101010;
-    font-size: 28rpx;
     margin: 20rpx 20px 0px 0;
     -webkit-border-radius: 10rpx;
     -moz-border-radius: 10rpx;

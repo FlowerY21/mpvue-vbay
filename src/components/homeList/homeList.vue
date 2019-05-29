@@ -1,7 +1,7 @@
 <template>
   <div class="home-list">
     <div class="list-tab flex-row vertical-center" v-if="tabIndex == 2">
-      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
+      <p class="common-black-text" v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
         {{item.value}}</p>
     </div>
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index" @tap="goDetail(info.id)">
@@ -9,7 +9,7 @@
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.title}}</h3>
           <div class="flex-row vertical-center">
-            <p class="activity-price">$0~980</p>
+            <p class="activity-price golden-text">$0~980</p>
           </div>
         </div>
         <div class="flex-row title-center mar-bottom">
@@ -204,8 +204,6 @@ export default {
   }
 
   .list-tab p {
-    font-size: 28rpx;
-    color: #101010;
     margin-right: 28rpx;
   }
 
@@ -214,7 +212,6 @@ export default {
   }
 
   .activity-price {
-    color: #FF9800;
     font-size: 28rpx;
   }
 

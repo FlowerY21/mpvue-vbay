@@ -18,6 +18,10 @@
         </div>
       </div>
     </div>
+    <div class="common-padding">
+      <button class="button-class" type="default" @tap="goPage()" >登出</button>
+    </div>
+
   </div>
 </template>
 
@@ -29,36 +33,33 @@
         percent:75,
         lists:[{
           itemList:[{
-            iconImg:'../../../../static/images/icon0.png',
+            iconImg:'../../../static/images/icon0.png',
             name:'付款方式',
           },{
-            iconImg:'../../../../static/images/icon1.png',
+            iconImg:'../../../static/images/icon1.png',
             name:'实名认证',
           },{
-            iconImg:'../../../../static/images/icon2.png',
+            iconImg:'../../../static/images/icon2.png',
             name:'邀请朋友',
           },{
-            iconImg:'../../../../static/images/icon3.png',
+            iconImg:'../../../static/images/icon3.png',
             name:'交易记录',
           },{
-            iconImg:'../../../../static/images/icon4.png',
+            iconImg:'../../../static/images/icon4.png',
             name:'我的活动',
           }]
         },{
           itemList:[{
-            name:'付款方式',
+            name:'反馈',
           },{
 
-            name:'实名认证',
+            name:'服务条款',
           },{
 
-            name:'邀请朋友',
+            name:'隐私政策',
           },{
 
-            name:'交易记录',
-          },{
-
-            name:'我的活动',
+            name:'关于VBAY',
           }]
         }]
       }
@@ -119,5 +120,16 @@
     font-size: 36rpx;
     color: #101010;
     line-height: 90rpx;
+  }
+  .button-class{
+    width: 100%;
+    height: 80rpx;
+    color: #ffffff;
+    line-height: 80rpx;
+    text-align: center;
+    background: #00b2b2;
+    border-radius: 80rpx;
+    font-size: 28rpx;
+    margin: 60rpx 0 40rpx;
   }
 </style>

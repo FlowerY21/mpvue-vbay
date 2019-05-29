@@ -9,7 +9,7 @@
     <div class="common-padding over-bottom flex-col vertical-center">
       <p class="comment-gray-text">您的评分</p>
       <div class="star-class">
-        <star score="3" starSize="big"></star>
+        <star score="5" starSize="big"></star>
       </div>
       <textarea class="pay-textarea" placeholder="对商家的评价，200字以内" placeholder-style="font-size:28rpx;color:#888888;" />
       <button class="button-class" type="default" @tap="goPage()" >提交</button>

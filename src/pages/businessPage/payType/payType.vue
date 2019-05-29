@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pay-type-user common-padding">
-      <p class="pay-type-text">付款给 Phuong Restaurant</p>
+      <p class="pay-type-text common-black-text">付款给 Phuong Restaurant</p>
     </div>
     <div class="pay-type-box">
         <radio-group class="radio-group" @change="radioChange">
@@ -14,7 +14,7 @@
     <div class="pay-box flex-row flow-justify">
       <div class="pay-msg flex-row vertical-center common-padding">
         <p class="pay-type-text">合计</p>
-        <div class="pay-msg-num">
+        <div class="pay-msg-num golden-text">
           <p>$99</p>
           <p>1000VBC</p>
         </div>
@@ -59,8 +59,6 @@ export default {
 
 <style scoped>
   .pay-type-text {
-    font-size: 28rpx;
-    color: #101010;
     line-height: 100rpx;
   }
 
@@ -100,6 +98,5 @@ export default {
   }
   .pay-msg-num p{
     font-size: 30rpx;
-    color: #FF9800;
   }
 </style>

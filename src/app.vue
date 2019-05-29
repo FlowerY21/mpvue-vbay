@@ -100,4 +100,21 @@ export default {
     font-size: 24rpx;
     color: #9a9a9a;
   }
+  .common-black-text{
+    font-size: 28rpx;
+    color: #101010;
+  }
+
+  .diamond{
+    background: #59A0FF;
+  }
+  .golden{
+    background: #FF9800;
+  }
+  .golden-text{
+    color: #FF9800;
+  }
+  .silver{
+    background: #DDDDDD;
+  }
 </style>

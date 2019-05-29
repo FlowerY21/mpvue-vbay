@@ -7,12 +7,12 @@
 
       </div>
     </div>
-    <p class="donation-notice common-padding">选择要捐赠给哪个组织</p>
+    <p class="donation-notice common-black-text common-padding">选择要捐赠给哪个组织</p>
     <div>
       <radio-group class="radio-group" @change="radioChange">
         <label class="radio common-padding flex-row vertical-center flow-justify" v-for="(item,index) in donations"
                :key="index">
-          <p class="pay-type-text">{{item.name}}</p>
+          <p class="pay-type-text common-black-text">{{item.name}}</p>
           <radio :value="item.id" :checked="index == 0"/>
         </label>
       </radio-group>
@@ -66,13 +66,9 @@
     margin-bottom: 6rpx;
   }
   .pay-type-text {
-    font-size: 28rpx;
-    color: #101010;
     line-height: 100rpx;
   }
   .donation-notice{
-    font-size: 28rpx;
-    color: #101010;
     line-height: 90rpx;
   }
   .donation-unit{

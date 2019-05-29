@@ -1,7 +1,7 @@
 <template>
   <div class="flex-col vertical-center result-box">
     <p class="title">感谢您的捐赠！</p>
-    <button class="button-class" type="default" plain="true" @tap="goPage()" >返回商家首页</button>
+    <button class="button-class common-black-text" type="default" plain="true" @tap="goPage()" >返回商家首页</button>
   </div>
 </template>
 
@@ -49,8 +49,6 @@
   .button-class{
     width: 200rpx;
     height: 60rpx;
-    font-size: 28rpx;
-    color: #101010;
     text-align: center;
     line-height: 60rpx;
   }

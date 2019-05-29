@@ -4,11 +4,11 @@
 
     <div class="card-container flex-col vertical-center">
       <div class="flex-row vertical-center">
-        <p class=" record-input-label">人数</p>
+        <p class=" record-input-label common-black-text">人数</p>
         <input class="record-input" type="number" />
       </div>
       <div class="flex-row vertical-center">
-        <p class=" record-input-label">日期</p>
+        <p class=" record-input-label common-black-text">日期</p>
         <!--<picker mode="date" :value="date" start="2019-06-01" end="2020-09-01" @change="bindDateChange">-->
           <!--<view class="picker">-->
             <!--{{date}}-->
@@ -17,7 +17,7 @@
         <input class="record-input" type="number"/>
       </div>
       <div class="flex-row vertical-center">
-        <p class=" record-input-label">时间</p>
+        <p class=" record-input-label common-black-text">时间</p>
         <input class="record-input" type="number" />
         <!--<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">-->
           <!--<view class="picker">-->
@@ -26,7 +26,7 @@
         <!--</picker>-->
       </div>
       <div class="flex-row vertical-center">
-        <p class=" record-input-label">备注</p>
+        <p class=" record-input-label common-black-text">备注</p>
         <input class="record-input" type="number" />
       </div>
 
@@ -111,8 +111,6 @@ export default {
     border-bottom: 2rpx solid #999999;
   }
   .record-input-label{
-    font-size: 28rpx;
-    color: #101010;
     margin-right: 20rpx;
   }
 </style>

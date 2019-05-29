@@ -4,13 +4,13 @@
       <div class="record-head" :style="'background:url('+item.imgUrl+') center/cover no-repeat'"></div>
       <div class="record-right flex-row vertical-center flow-justify">
         <div class="flex-col">
-          <p class="record-msg">预订座位 2人，5月15日，12:00</p>
+          <p class="record-msg common-black-text">预订座位 2人，5月15日，12:00</p>
           <p class="record-time">2019-5-12 13:36</p>
         </div>
         <div class="record-status">
-          <p v-if="item.status == 0" class="green">确认中</p>
-          <p v-else-if="item.status == 1">失败</p>
-          <p v-else class="green">成功</p>
+          <p class="common-black-text green" v-if="item.status == 0">确认中</p>
+          <p class="common-black-text" v-else-if="item.status == 1">失败</p>
+          <p class="common-black-text green" v-else>成功</p>
         </div>
       </div>
     </div>
@@ -50,17 +50,9 @@ export default {
   .record-right{
     width: calc(100% - 100rpx - 30rpx);
   }
-  .record-msg{
-    font-size: 28rpx;
-    color: #101010;
-  }
   .record-time{
     font-size: 24rpx;
     color: #999999;
-  }
-  .record-status p{
-    font-size: 28rpx;
-    color: #101010;
   }
   .record-status .green{
     color: #00B2B2;

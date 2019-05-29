@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="button-box flex-row vertical-center flow-justify">
-          <button class="button-class" type="default" plain="true" @tap="goPage(0)" >预定</button>
-          <button class="button-class" type="default" plain="true" @tap="goPage(1)" >付款</button>
+          <button class="button-class common-black-text" type="default" plain="true" @tap="goPage(0)" >预定</button>
+          <button class="button-class common-black-text" type="default" plain="true" @tap="goPage(1)" >付款</button>
         </div>
         <div class="list-tab flex-row vertical-center">
           <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
@@ -147,8 +147,6 @@ export default {
   .button-class{
     width: 45%;
     height: 54rpx;
-    font-size: 28rpx;
-    color: #101010;
     line-height: 54rpx;
     margin: 0;
   }

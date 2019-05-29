@@ -66,15 +66,6 @@ export default {
     box-sizing: border-box;
     position: relative;
   }
-  .diamond{
-    background: #59A0FF;
-  }
-  .golden{
-    background: #FF9800;
-  }
-  .silver{
-    background: #DDDDDD;
-  }
   .header-img{
     width: 120rpx;
     height: 120rpx;

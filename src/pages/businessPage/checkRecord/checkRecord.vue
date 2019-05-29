@@ -1,7 +1,7 @@
 <template>
   <div class="common-padding">
     <div class="flex-col vertical-center">
-      <p class="price-title">使用微贝预订</p>
+      <p class="price-title common-black-text">使用微贝预订</p>
       <p class="price-num">500VBC</p>
     </div>
     <div class="price-content">
@@ -32,8 +32,6 @@ export default {
 
 <style scoped>
   .price-title {
-    font-size: 28rpx;
-    color: #101010;
     margin-top: 10vh;
     margin-bottom: 30rpx;
   }

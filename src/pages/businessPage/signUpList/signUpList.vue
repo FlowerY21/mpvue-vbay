@@ -3,9 +3,9 @@
     <div class="flex-row vertical-center flow-justify common-padding sign-up-list">
       <div class="list-left flex-row vertical-center">
         <div class="head" style="background:url(https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640) center/cover no-repeat"></div>
-        <p class="user">赵小花<span class="vip-class">金贝会员</span></p>
+        <p class="user common-black-text">赵小花<span class="vip-class golden-text">金贝会员</span></p>
       </div>
-      <p class="time">5月29日</p>
+      <p class="common-black-text">5月29日</p>
     </div>
   </div>
 </template>
@@ -35,8 +35,6 @@
 
   }
   .user{
-    font-size:28rpx;
-    color:#101010;
     margin-left:26rpx;
   }
   .vip-class{
@@ -50,9 +48,5 @@
     line-height:40rpx;
     border-radius:40rpx;
     margin-left:20rpx;
-  }
-  .time{
-    font-size:28rpx;
-    color:#101010;
   }
 </style>
