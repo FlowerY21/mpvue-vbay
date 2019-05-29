@@ -15,7 +15,8 @@
     "pages/businessPage/payover/main",
     "pages/businessPage/donation/main",
     "pages/businessPage/commonResult/main",
-    "pages/businessPage/activityDetail/main"
+    "pages/businessPage/activityDetail/main",
+    "pages/businessPage/signUpList/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
