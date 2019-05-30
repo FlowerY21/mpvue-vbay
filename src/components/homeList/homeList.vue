@@ -12,7 +12,7 @@
             <p class="activity-price golden-text">$0~980</p>
           </div>
         </div>
-        <div class="flex-row title-center mar-bottom">
+        <div class="flex-row vertical-center title-center mar-bottom">
           <img class="position-icon" src="../../../static/images/position-fill.png" alt="positionIcon">
           <p class="nextTitle overflow">47 Willoughby road, Crows Nest, Sydney...</p>
         </div>
@@ -33,7 +33,7 @@
             <span class="score">{{info.score}}</span>
           </div>
         </div>
-        <div class="flex-row title-center">
+        <div class="flex-row title-center vertical-center">
           <img class="position-icon" src="../../../static/images/position-fill.png" alt="positionIcon">
           <p class="nextTitle">{{info.length}} km | {{info.address}}</p>
         </div>
@@ -147,9 +147,16 @@ export default {
       this.tabShow = index;
     },
     goDetail(id){
-      wx.navigateTo({
-        url: '../../businessPage/business/main?id='+id
-      })
+      if(this.tabIndex == 6){
+        wx.navigateTo({
+          url: '../../businessPage/activityDetail/main?id='+id
+        })
+      }else{
+        wx.navigateTo({
+          url: '../../businessPage/business/main?id='+id
+        })
+      }
+
     }
   }
 }
@@ -175,6 +182,7 @@ export default {
     width: 200rpx;
     height: 200rpx;
     overflow: hidden;
+    margin-top: 10rpx;
   }
 
   .list-img-box div {
@@ -201,6 +209,7 @@ export default {
     width: 100%;
     height: 260rpx;
     border-radius: 10rpx;
+    margin-top: 10rpx;
   }
 
   .list-tab p {
@@ -218,5 +227,9 @@ export default {
   .activity-img-box {
     width: 100%;
     height: 262rpx;
+  }
+  .position-icon{
+    width: 24rpx;
+    height: 24rpx;
   }
 </style>

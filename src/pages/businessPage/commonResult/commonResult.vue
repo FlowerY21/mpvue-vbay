@@ -28,9 +28,6 @@
           url: '../../businessPage/business/main'
         })
       },
-      radioChange: function (e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value)
-      }
     }
   }
 </script>
@@ -47,7 +44,7 @@
     padding:170rpx 0 68rpx;
   }
   .button-class{
-    width: 200rpx;
+    width: 240rpx;
     height: 60rpx;
     text-align: center;
     line-height: 60rpx;

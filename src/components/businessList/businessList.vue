@@ -19,7 +19,7 @@
         </div>
         <div class="flex-row vertical-center flow-justify" v-else>
           <p class="price">{{item.price}}</p>
-          <button v-if="tabIndex == 2" type="default"  bindtap="default" class="activity-button">报名</button>
+          <button v-if="tabIndex == 2" type="default"  bindtap="default" class="activity-button" @tap="goDetail()">报名</button>
         </div>
       </div>
     </div>
@@ -63,6 +63,13 @@ export default {
         content:'本菜是以草虾为主料，加入多种调品料制成。',
         price:'$52.9'
       },]
+    }
+  },
+  methods:{
+    goDetail(){
+      wx.navigateTo({
+        url: '../../businessPage/activityDetail/main'
+      })
     }
   }
 }

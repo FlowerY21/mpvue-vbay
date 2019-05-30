@@ -24,7 +24,7 @@
     <div class="sign-up">
       <div class="flex-row vertical-center flow-justify common-padding">
         <p class="common-black-text">已报名(5)</p>
-        <div class="flex-row vertical-center">
+        <div class="flex-row vertical-center" @tap="goList()">
           <p class="all">全部报名</p>
           <img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">
         </div>
@@ -43,7 +43,7 @@
           <p class="foot-name">分享</p>
         </div>
         <div class="flex-col vertical-center">
-          <img src="../../../../static/images/star.png" alt="collectIcon" class="foot-icon">
+          <img src="../../../../static/images/star.png" alt="collectIcon" class="foot-icon star-icon">
           <p class="foot-name">收藏</p>
         </div>
       </div>
@@ -88,6 +88,13 @@
           img:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
           name:'赵小花',
         }]
+      }
+    },
+    methods:{
+      goList(){
+        wx.navigateTo({
+          url: '../../businessPage/signUpList/main'
+        })
       }
     }
   }
@@ -198,5 +205,8 @@
   }
   .foot-left{
     width: 30%;
+  }
+  .star-icon{
+    width: 55rpx;
   }
 </style>

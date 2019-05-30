@@ -11,7 +11,7 @@
       <div class="my-list" v-for="(list,index) in lists" :key="index">
         <div class="my-item-list flex-row vertical-center flow-justify common-padding" v-for="(item,index2) in list.itemList" :key="index2">
           <div class="flex-row vertical-center">
-            <img v-if="item.iconImg" :src="item.iconImg" alt="icon" class="icon">
+            <img v-if="item.iconImg" :src="item.iconImg" alt="icon" class="icon" :class="{'time-icon':index2 == 3}">
             <p class="item-name">{{item.name}}</p>
           </div>
           <img src="../../../../static/images/right2.png" alt="icon" class="right-icon">
@@ -131,5 +131,9 @@
     border-radius: 80rpx;
     font-size: 28rpx;
     margin: 60rpx 0 40rpx;
+  }
+  .time-icon{
+    width: 50rpx;
+    height: 46rpx;
   }
 </style>
