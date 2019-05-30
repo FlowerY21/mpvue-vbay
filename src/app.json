@@ -3,6 +3,8 @@
     "pages/homePage/home/main",
     "pages/vipPage/vip/main",
     "pages/myPage/my/main",
+    "pages/myPage/activity/main",
+    "pages/myPage/recordList/main",
     "pages/homePage/search/main",
     "pages/index/main",
     "pages/businessPage/business/main",

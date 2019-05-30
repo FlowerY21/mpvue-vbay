@@ -9,7 +9,8 @@
     </div>
     <div>
       <div class="my-list" v-for="(list,index) in lists" :key="index">
-        <div class="my-item-list flex-row vertical-center flow-justify common-padding" v-for="(item,index2) in list.itemList" :key="index2">
+        <div class="my-item-list flex-row vertical-center flow-justify common-padding"
+             v-for="(item,index2) in list.itemList" :key="index2" @tap="goPage(index2)">
           <div class="flex-row vertical-center">
             <img v-if="item.iconImg" :src="item.iconImg" alt="icon" class="icon" :class="{'time-icon':index2 == 3}">
             <p class="item-name">{{item.name}}</p>
@@ -19,7 +20,7 @@
       </div>
     </div>
     <div class="common-padding">
-      <button class="button-class" type="default" @tap="goPage()" >登出</button>
+      <button class="button-class" type="default" @tap="exit()" >登出</button>
     </div>
 
   </div>
@@ -62,6 +63,21 @@
             name:'关于VBAY',
           }]
         }]
+      }
+    },
+    methods:{
+      exit(){},
+      goPage(index){
+        if(index == 4){
+          wx.navigateTo({
+            url: '../../myPage/activity/main'
+          })
+        }
+        if(index == 3){
+          wx.navigateTo({
+            url: '../../myPage/recordList/main'
+          })
+        }
       }
     }
   }
