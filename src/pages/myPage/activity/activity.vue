@@ -84,7 +84,9 @@ export default {
       this.tabShow = index;
     },
     goPage(){
-
+      wx.navigateTo({
+        url: '../../myPage/ticket/main'
+      })
     }
   }
 }

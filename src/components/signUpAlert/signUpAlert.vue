@@ -58,6 +58,7 @@
 
 <style scoped>
   .alert-bottom{
+    border-top: 2rpx solid #dddddd;
     padding-left: 30rpx;
   }
   .back-icon{

@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="pay-type-user common-padding">
-      <p class="pay-type-text common-black-text">付款给 Phuong Restaurant</p>
+      <p v-if="showMsg == 1" class="pay-type-text common-black-text">付款给 Phuong Restaurant</p>
+      <div v-else class="flex-row vertical-center flow-justify">
+        <p class="pay-type-text common-black-text">报名人信息</p>
+        <p class="pay-type-text common-black-text">赵小花（13111111111）</p>
+      </div>
     </div>
     <div class="pay-type-box">
         <radio-group class="radio-group" @change="radioChange">
@@ -42,7 +46,11 @@ export default {
         bankNum:'5248 **** **** 4246',
         id:1,
       },],
+      showMsg:''
     }
+  },
+  mounted(){
+    this.showMsg = this.$root.$mp.query.type;
   },
   methods:{
     goPage(){

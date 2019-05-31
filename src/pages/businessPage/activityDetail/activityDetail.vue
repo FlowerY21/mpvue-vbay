@@ -49,33 +49,36 @@
       </div>
       <button class="button-class" type="default" @tap="goPage()" >我要报名</button>
     </div>
-    <sing-up-alert alertTitle="选择种类" :show="showBack" :alertShow="alertShow" :total="total" @next="nextStep()" @goBack="goBack">
-      <div v-if="showBack" class="flex-col">
+    <sing-up-alert alertTitle="选择种类" :show="showBack" :alertShow="alertShow"
+                   :total="total" @next="nextStep()" @goBack="goBack" @cancel="cancel">
+      <div v-if="showBack" class="flex-col sing-next-box">
         <p class="common-black-text">姓名</p>
-        <div class="flex-row vertical-center">
-          <input type="text" class="input-class" v-model="username" placeholder="请输入姓名">
-          <radio value="1" checked="checked"/>匿名
+        <div class="flex-row vertical-center flow-justify">
+          <input type="text" class="input-class" v-model="username" placeholder="请输入姓名" placeholder-style="font-size:24rpx;">
+          <radio value="1" checked="checked" class="radio-class" /> <span class="common-black-text">匿名</span>
         </div>
         <p class="common-black-text">电话</p>
-        <input type="text" class="input-class" v-model="phone" placeholder="请输入电话号码">
+        <input type="text" class="input-class" v-model="phone" placeholder="请输入电话号码" placeholder-style="font-size:24rpx;">
       </div>
       <div v-else>
-        <button class="types-button flex-row vertical-center flow-justify" type="default" @tap="chooseVip(buttonIndex)" v-for="(button,buttonIndex) in buttonList" :key="buttonIndex">
+        <div class="types-button flex-row vertical-center flow-justify" type="default"  :class="{'on':buttonOn == buttonIndex}"
+             @tap="chooseVip(buttonIndex)" v-for="(button,buttonIndex) in buttonList" :key="buttonIndex">
           <p class="common-black-text">{{button.name}}</p>
           <p class="common-black-text golden-text">${{button.price}}</p>
-        </button>
+        </div>
         <p class="comment-gray-text">如何成为会员？尊享低价购票</p>
-        <button class="types-button no-vip-button flex-row vertical-center flow-justify" type="default">
+        <div class="types-button no-vip-button flex-row vertical-center flow-justify" type="default" @tap="chooseVip(4)" :class="{'on':buttonOn == 4}">
           <p class="common-black-text">非会员</p>
           <p class="common-black-text golden-text">${{buttonPrice}}</p>
-        </button>
-        <div class="flex-row vertical-center around-justify num-box">
+        </div>
+
+        <div class="flex-row vertical-center  num-box">
           <div class="flex-row vertical-center">
-            <p class="num-button common-black-text">-</p>
+            <p class="num-button common-black-text" @tap="del">-</p>
             <input type="number" class="num-input" v-model="num">
-            <p class="num-button common-black-text">+</p>
+            <p class="num-button common-black-text" @tap="add">+</p>
           </div>
-          <p class="common-black-text">剩余38张</p>
+          <p class="common-black-text num-text">剩余38张</p>
         </div>
       </div>
     </sing-up-alert>
@@ -133,7 +136,8 @@
         buttonPrice:'800',
         alertShow:false,
         total:'100',
-        num:'1'
+        num:'1',
+        buttonOn:'4',
       }
     },
     components:{
@@ -145,9 +149,8 @@
           url: '../../businessPage/signUpList/main'
         })
       },
-      chooseVip(){
-        this.alertShow = false;
-        this.showBack = false;
+      chooseVip(index){
+        this.buttonOn = index
       },
       goPage(){
         this.alertShow = true;
@@ -155,13 +158,28 @@
       goBack(){
         this.showBack = false;
       },
+      cancel(){
+        this.alertShow = false;
+        this.showBack = false;
+      },
       nextStep(){
         if(this.showBack){
           wx.navigateTo({
-            url: '../../businessPage/payment/main'
+            url: '../../businessPage/payType/main?type=2'
           })
         }
         this.showBack = true;
+      },
+      add(){
+        console.log(1);
+        this.num++;
+      },
+      del(){
+        console.log(1)
+        if(this.num == 0){
+          return;
+        }
+        this.num--;
       }
     }
   }
@@ -280,6 +298,22 @@
     width: 100%;
     height: 80rpx;
     margin: 10rpx 0;
+    padding-left:14px;
+    padding-right:14px;
+    box-sizing:border-box;
+    font-size:18px;
+    border-radius:5px;
+    color:#000000;
+    background-color:#F8F8F8;
+    border: 2rpx solid #dddddd;
+  }
+  .types-button.on{
+    background: #00D2FF;
+    border-color: #45ABFF;
+  }
+  .types-button.on .common-black-text,
+  .types-button.on .golden-text{
+    color: #ffffff;
   }
   .no-vip-button{
     margin: 40rpx 0;
@@ -299,9 +333,21 @@
   .num-box{
     margin-bottom: 30rpx;
   }
+  .num-text{
+    margin-left: 20rpx;
+  }
   .input-class{
-    width: 60%;
+    width: 75%;
+    height: 60rpx;
     border: 2rpx solid #dddddd;
     margin: 10rpx 0;
+    padding-left: 20rpx;
+  }
+  .radio-class{
+    /*width: 20rpx;*/
+    /*height: 20rpx;*/
+  }
+  .sing-next-box{
+    padding-bottom: 30rpx;
   }
 </style>

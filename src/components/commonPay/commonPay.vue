@@ -50,7 +50,7 @@
       },
       goPage(){
         wx.navigateTo({
-          url: '../../businessPage/payType/main'
+          url: '../../businessPage/payType/main?type=1'
         })
       }
     }

@@ -78,6 +78,11 @@
             url: '../../myPage/recordList/main'
           })
         }
+        if(index == 0){
+          wx.navigateTo({
+            url: '../../myPage/payType/main'
+          })
+        }
       }
     }
   }
