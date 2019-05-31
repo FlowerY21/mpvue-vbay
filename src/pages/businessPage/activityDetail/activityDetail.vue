@@ -49,10 +49,41 @@
       </div>
       <button class="button-class" type="default" @tap="goPage()" >我要报名</button>
     </div>
+    <sing-up-alert alertTitle="选择种类" :show="showBack" :alertShow="alertShow" :total="total" @next="nextStep()" @goBack="goBack">
+      <div v-if="showBack" class="flex-col">
+        <p class="common-black-text">姓名</p>
+        <div class="flex-row vertical-center">
+          <input type="text" class="input-class" v-model="username" placeholder="请输入姓名">
+          <radio value="1" checked="checked"/>匿名
+        </div>
+        <p class="common-black-text">电话</p>
+        <input type="text" class="input-class" v-model="phone" placeholder="请输入电话号码">
+      </div>
+      <div v-else>
+        <button class="types-button flex-row vertical-center flow-justify" type="default" @tap="chooseVip(buttonIndex)" v-for="(button,buttonIndex) in buttonList" :key="buttonIndex">
+          <p class="common-black-text">{{button.name}}</p>
+          <p class="common-black-text golden-text">${{button.price}}</p>
+        </button>
+        <p class="comment-gray-text">如何成为会员？尊享低价购票</p>
+        <button class="types-button no-vip-button flex-row vertical-center flow-justify" type="default">
+          <p class="common-black-text">非会员</p>
+          <p class="common-black-text golden-text">${{buttonPrice}}</p>
+        </button>
+        <div class="flex-row vertical-center around-justify num-box">
+          <div class="flex-row vertical-center">
+            <p class="num-button common-black-text">-</p>
+            <input type="number" class="num-input" v-model="num">
+            <p class="num-button common-black-text">+</p>
+          </div>
+          <p class="common-black-text">剩余38张</p>
+        </div>
+      </div>
+    </sing-up-alert>
   </div>
 </template>
 
 <script>
+  import SingUpAlert from '../../../components/signUpAlert/signUpAlert'
   export default {
     name: "activityDetail",
     data() {
@@ -87,14 +118,50 @@
         },{
           img:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
           name:'赵小花',
-        }]
+        }],
+        buttonList:[{
+          name:'钻贝会员',
+          price:'49'
+        },{
+          name:'金贝会员',
+          price:'49'
+        },{
+          name:'银贝会员',
+          price:'49'
+        },],
+        showBack:false,
+        buttonPrice:'800',
+        alertShow:false,
+        total:'100',
+        num:'1'
       }
+    },
+    components:{
+      SingUpAlert
     },
     methods:{
       goList(){
         wx.navigateTo({
           url: '../../businessPage/signUpList/main'
         })
+      },
+      chooseVip(){
+        this.alertShow = false;
+        this.showBack = false;
+      },
+      goPage(){
+        this.alertShow = true;
+      },
+      goBack(){
+        this.showBack = false;
+      },
+      nextStep(){
+        if(this.showBack){
+          wx.navigateTo({
+            url: '../../businessPage/payment/main'
+          })
+        }
+        this.showBack = true;
       }
     }
   }
@@ -208,5 +275,33 @@
   }
   .star-icon{
     width: 55rpx;
+  }
+  .types-button{
+    width: 100%;
+    height: 80rpx;
+    margin: 10rpx 0;
+  }
+  .no-vip-button{
+    margin: 40rpx 0;
+  }
+  .num-button{
+    width: 50rpx;
+    height: 50rpx;
+    border: 2rpx solid #dddddd;
+    text-align: center;
+    line-height: 50rpx;
+  }
+  .num-input{
+    width: 120rpx;
+    height: 50rpx;
+    text-align: center;
+  }
+  .num-box{
+    margin-bottom: 30rpx;
+  }
+  .input-class{
+    width: 60%;
+    border: 2rpx solid #dddddd;
+    margin: 10rpx 0;
   }
 </style>

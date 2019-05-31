@@ -13,7 +13,7 @@
     </div>
     <div class="pay-box flex-row flow-justify">
       <div class="pay-msg flex-row vertical-center common-padding">
-        <p class="pay-type-text">合计</p>
+        <p class="pay-type-text common-black-text">合计：</p>
         <div class="pay-msg-num golden-text">
           <p>$99</p>
           <p>1000VBC</p>
