@@ -33,10 +33,12 @@
       return{
         percent:75,
         lists:[{
-          itemList:[{
-            iconImg:'../../../static/images/icon0.png',
-            name:'付款方式',
-          },{
+          itemList:[
+          //   {
+          //   iconImg:'../../../static/images/icon0.png',
+          //   name:'付款方式',
+          // },
+            {
             iconImg:'../../../static/images/icon1.png',
             name:'实名认证',
           },{
@@ -68,19 +70,19 @@
     methods:{
       exit(){},
       goPage(index){
-        if(index == 4){
+        if(index == 3){
           wx.navigateTo({
             url: '../../myPage/activity/main'
           })
         }
-        if(index == 3){
+        if(index == 2){
           wx.navigateTo({
             url: '../../myPage/recordList/main'
           })
         }
         if(index == 0){
           wx.navigateTo({
-            url: '../../myPage/payType/main'
+            url: '../../myPage/certification/main'
           })
         }
       }

@@ -7,6 +7,9 @@
     "pages/myPage/recordList/main",
     "pages/myPage/ticket/main",
     "pages/myPage/payType/main",
+    "pages/myPage/certification/main",
+    "pages/myPage/certificationLevelOne/main",
+    "pages/myPage/certificationLevelTwo/main",
     "pages/myPage/addPayType/main",
     "pages/homePage/search/main",
     "pages/index/main",
@@ -21,7 +24,8 @@
     "pages/businessPage/donation/main",
     "pages/businessPage/commonResult/main",
     "pages/businessPage/activityDetail/main",
-    "pages/businessPage/signUpList/main"
+    "pages/businessPage/signUpList/main",
+    "pages/walletPage/wallet/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,6 +44,11 @@
       },{
         "text": "会员",
         "pagePath": "pages/vipPage/vip/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/home-active.png"
+      },{
+        "text": "钱包",
+        "pagePath": "pages/walletPage/wallet/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       },{
