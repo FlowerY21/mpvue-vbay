@@ -14,7 +14,7 @@
     <input placeholder="邀请码" class="common-class" placeholder-style="color:#CECECE"/>
     <button class="button-class" type="default" @tap="goPage()" >确认</button>
     <p class="comment-gray-text">绑定账号信息获取 10$ 抵用金</p>
-    <button open-type="getUserInfo" lang="zh_CN" @getUserInfo="onGotUserInfo">获取用户信息</button>
+    <!--<button open-type="getUserInfo" lang="zh_CN" @getUserInfo="onGotUserInfo">获取用户信息</button>-->
   </div>
 </template>
 
