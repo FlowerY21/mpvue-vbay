@@ -26,6 +26,11 @@ export default {
       }]
     }
   },
+  onUnload: function () {
+    wx.reLaunch({
+      url: '../../myPage/my/main'
+    })
+  },
   methods:{
     goDetail(index){
       if (index == 0) {

@@ -21,7 +21,7 @@
         </div>
         <div class="item-center flex-row flow-justify">
           <div class="goods" :style="'background: url('+list.goodsImg+') center/cover no-repeat'"></div>
-          <div class="goods-right flow-col around-justify">
+          <div class="goods-right flex-col around-justify">
             <p class="goods-title">新品试吃活动</p>
             <div>
               <p class="comment-gray-text">05-14 09:00 至 05-16 19:00</p>
@@ -159,13 +159,14 @@ export default {
     text-align: center;
     color: #ffffff;
     line-height: 60rpx;
+    margin-right: 0;
     margin-left: 28rpx;
   }
   .item-bottom{
     padding-top: 20rpx;
     padding-bottom: 20rpx;
     background: #ffffff;
-    justify-content: end;
+    justify-content: flex-end;
     border-bottom: 2rpx solid #dddddd;
     margin-bottom: 20rpx;
   }

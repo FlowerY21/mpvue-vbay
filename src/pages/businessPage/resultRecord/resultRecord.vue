@@ -32,7 +32,7 @@ export default {
           url: '../../businessPage/reservationRecord/main'
         })
       } else {
-        wx.navigateTo({
+        wx.redirectTo({
           url: '../../businessPage/business/main'
         })
       }

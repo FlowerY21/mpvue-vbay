@@ -3,7 +3,11 @@
     <div class="business-img" :style="'background:url('+bigImgUrl+') center/cover no-repeat'"></div>
     <div class="common-padding">
       <div class="business-content-box">
-        <p class="business-title">北悉尼商会</p>
+        <div class="flex-row vertical-center flow-justify business-top">
+          <p class="business-title">北悉尼商会</p>
+          <img src="../../../../static/images/share.png" alt="shareIcon" class="share-icon">
+        </div>
+
         <div class="flex-row vertical-center flow-justify">
           <div class="flex-row vertical-center">
             <img class="star-icon" src="../../../../static/images/start.png" alt="star-icon">
@@ -20,7 +24,7 @@
             <p class="nextTitle">47 Willoughby road, Crows Nest, Sydney...</p>
           </div>
           <div class="flex-row vertical-center">
-            <img src="../../../../static/images/plane.png" alt="planeIcon" class="plane-icon">
+            <!--<img src="../../../../static/images/plane.png" alt="planeIcon" class="plane-icon">-->
             <div class="line"></div>
             <img src="../../../../static/images/phone.png" alt="phoneIcon" class="phone-icon">
           </div>
@@ -123,7 +127,6 @@ export default {
   .business-title{
     font-size: 44rpx;
     color: #101001;
-    margin: 24rpx 0 10rpx;
   }
   .score{
     font-size: 32rpx;
@@ -162,5 +165,12 @@ export default {
   .list-tab .on{
     color: #00B2B2;
     border-bottom: 2rpx solid #00B2B2;
+  }
+  .share-icon{
+    width: 44rpx;
+    height: 44rpx;
+  }
+  .business-top{
+    padding: 30rpx 0 20rpx;
   }
 </style>

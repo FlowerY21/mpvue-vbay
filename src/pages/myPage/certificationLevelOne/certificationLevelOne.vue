@@ -23,6 +23,11 @@ export default {
       array: ['身份证', '护照'],
     }
   },
+  onUnload: function () {
+    wx.navigateTo({
+      url: '../../myPage/certification/main'
+    })
+  },
   methods:{
     bindPickerChange(e){
       console.log('picker发送选择改变，携带值为', e.mp.detail.value)
