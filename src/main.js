@@ -1,5 +1,7 @@
 import Vue from  'vue'
 import App from './app'
+import api from './utils/api' // 引用接口处理文件，此处为api.js
+Vue.prototype.$api = api
 
 //  设置vue的提示功能关闭
 Vue.config.productionTip = false

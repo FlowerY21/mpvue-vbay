@@ -24,6 +24,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "es6-promise": "^4.2.6",
     "mpvue": "^2.0.0",
     "vuex": "^3.0.1"
   },
