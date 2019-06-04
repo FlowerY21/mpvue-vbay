@@ -87,10 +87,15 @@ export default {
     },
     login () {
       const _this = this;
+      wx.showLoading({
+        title: '登录中',
+      })
       console.log('登录');
+
       wx.login({
         success (res) {
           if (res.code){
+            wx.hideLoading();
             // 这里可以把code传给后台，后台用此获取openid及session_key
             const params = {
               openId:res.code
@@ -99,7 +104,9 @@ export default {
             _this.loginVbay();
           }
         },
-
+        fail(res){
+          wx.hideLoading()
+        }
       })
     },
     async loginVbay (params) {
