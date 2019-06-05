@@ -10,7 +10,7 @@
         <input placeholder="短信验证码" class="common-class" placeholder-style="color:#CECECE"/>
         <button class="button-class" type="default" @tap="sendCode()" >发送</button>
       </div>
-      <input placeholder="登录密码" class="common-class" placeholder-style="color:#CECECE"/>
+        <input placeholder="登录密码" class="common-class" placeholder-style="color:#CECECE"/>
       <input placeholder="确认登录密码" class="common-class" placeholder-style="color:#CECECE"/>
       <input placeholder="电子邮箱" class="common-class" placeholder-style="color:#CECECE"/>
       <picker @change="bindPickerChange" :value="index" :range="array" class="common-class">
@@ -101,7 +101,7 @@ export default {
               openId:res.code
             };
             _this.getSetting();
-            _this.loginVbay();
+            _this.loginVbay(params);
           }
         },
         fail(res){

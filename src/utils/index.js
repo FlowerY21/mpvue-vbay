@@ -1,4 +1,4 @@
-const Promise = require('es6-promise').Promise
+const Promise = require('es6-promise').Promise;
 
 function httpsPromisify (fn) {
   return function (obj = {}) {

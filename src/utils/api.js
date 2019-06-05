@@ -1,7 +1,7 @@
 
 import util from './index' // 此处，引入存放对promise处理的文件
 
-const ip = 'http://39.98.58.234:7001/v2/api-docs?group=MiniApi'  // 后台的ip地址
+const ip = 'https://39.98.58.234:7443'  // 后台的ip地址
 const getRequest = util.httpsPromisify(wx.request)
 
 const request = (method, url, data = {}) => { // method为请求方法，url为接口路径，data为传参
