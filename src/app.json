@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/register/main",
     "pages/homePage/home/main",
     "pages/vipPage/vip/main",
     "pages/myPage/my/main",

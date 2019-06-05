@@ -16,13 +16,11 @@ const request = (method, url, data = {}) => { // method为请求方法，url为�
 }
 
 export default {
-  // 接口
-  // [自定义名字]: params => request([请求方法], [接口路径], params),
-  // 例子
-  // loadMenu: params => request('post', '/menu/loadMainMenu.do', params)
-
-
+  // 外部登录首次注册
+  registerEx: params => request('post','/miniapp/registerEx',params),
   // 登录
-  login: params => request('post','/miniapp/login',params)
+  login: params => request('post','/miniapp/login',params),
+  // codeSession
+  codeSession: params => request('post','/miniapp/code2Session',params),
 
 }
