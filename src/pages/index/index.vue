@@ -16,7 +16,11 @@ export default {
   data() {
     return {
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      code:'',
+      token:'',
       openId:'',
+      session_key:'',
+      commonParams:{}
     }
   },
   mounted() {
@@ -29,16 +33,12 @@ export default {
       if (e.mp.detail.userInfo) {
         // 用户允许授权
         console.log('用户按了允许授权按钮');
-
-
         // 保存用户信息
         let {encryptedData, userInfo, iv} = e.mp.detail;
-        console.log('userInfo',userInfo)
 
-
-        const params = {
+        _this.commonParams = {
           city : userInfo.city,
-          code : _this.openId,
+          code : _this.code,
           country : userInfo.country,
           encryptedData : encryptedData,
           gender : userInfo.gender,
@@ -46,15 +46,9 @@ export default {
           iv : iv,
           nickName : userInfo.nickName,
           province : userInfo.province
-        }
+        };
 
-        _this.codeSession(params);
-
-
-        // 路由跳转
-        // wx.redirectTo({
-        //   url: '../register/main'
-        // });
+        _this.codeSession(_this.commonParams);
 
       } else {
         //用户按了拒绝按钮
@@ -68,17 +62,14 @@ export default {
         success(res) {
           if (res.authSetting['scope.userInfo']) {
             console.log('这里已经授权');
-
-
-            // wx.redirectTo({
-            //   url: '../register/main'
-            // });
+            _this.codeSession(_this.commonParams);
           } else {
 
           }
         }
       })
     },
+    // 获取小程序登录code
     login() {
       const _this = this;
 
@@ -87,8 +78,8 @@ export default {
       wx.login({
         success(res) {
           if (res.code) {
-            _this.openId = res.code;
-            console.log(_this.openId)
+            _this.code = res.code;
+
             _this.getSetting();
           }
         },
@@ -97,9 +88,59 @@ export default {
         }
       })
     },
+    // 获取openid,session_key
     async codeSession(params){
+      const _this = this;
       const result = await this.$api.codeSession(params);
       console.log('codeSession', result)
+      if (result.code == 200) {
+        wx.setStorage({
+          key:"token",
+          data:result.result.token
+        })
+
+        // _this.session_key = result.result.session.session_key;
+        wx.showLoading({
+          title: '登录中',
+        });
+
+        _this.openId = result.result.session.openid;
+        const params = {
+          openId : _this.openId
+        };
+
+        _this.loginVbay(params);
+      }
+    },
+    // 登录vbay
+    async loginVbay(params) {
+      const _this = this;
+      const result = await this.$api.login(params);
+      console.log('login', result)
+      if (result.code == 200) {
+        wx.hideLoading()
+        // 更新token
+        wx.setStorage({
+          key:"token",
+          data:result.result.token
+        })
+        if(result.result.registered){
+          wx.switchTab({
+            url: '../homePage/home/main'
+          });
+          // wx.redirectTo({
+          //   url: '../register/main'
+          // });
+        }else{
+          // wx.switchTab({
+          //   url: '../homePage/home/main'
+          // });
+
+          wx.redirectTo({
+            url: '../register/main?id=' + _this.openId
+          });
+        }
+      }
     },
   }
 }

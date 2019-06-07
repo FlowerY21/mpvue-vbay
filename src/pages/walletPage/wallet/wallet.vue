@@ -2,8 +2,8 @@
   <div>
     <div class="over-top flex-col vertical-center common-padding">
       <p class="title">VBC 余额</p>
-      <p class="price-title">16500</p>
-      <p class="notice-msg">1650 AUD</p>
+      <p class="price-title">{{vbcTotal}}</p>
+      <p class="notice-msg">{{vbcTotal / 10}} AUD</p>
       <p class="notice-price">1 VBC =  0.1 AUD</p>
     </div>
     <div class="common-padding over-bottom flex-col">
@@ -24,11 +24,29 @@
 <script>
 export default {
   name: "wallet",
+  data(){
+    return{
+      vbcTotal:'',
+    }
+  },
+  mounted(){
+    const _this = this;
+    _this.getVBC();
+  },
   methods:{
     goPage(){
       wx.navigateTo({
         url: '../../businessPage/donation/main'
       })
+    },
+    async getVBC(){
+      const _this = this;
+      const result = _this.$api.getVBC();
+      console.log('getVBC',result);
+      if (result.code == 200) {
+        _this.vbcTotal = result.result;
+      }
+
     }
   }
 }
