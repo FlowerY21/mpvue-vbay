@@ -1,17 +1,19 @@
 <template>
   <div class="common-padding">
-    <div class="flex-row vertical-center flow-justify level-top">
-      <input placeholder="名字" class="common-class"/>
-      <input placeholder="姓氏" class="common-class"/>
-    </div>
-    <div class="flex-row vertical-center flow-justify level-center">
-      <input placeholder="证件类型" class="common-class"/>
-      <picker @change="bindPickerChange" :value="index" :range="array" class="common-class">
-        <p>{{array[index]}}</p>
-      </picker>
-    </div>
-    <input placeholder="证件号码" class="common-class"/>
-    <button class="button-class" type="default" @tap="goPage()" >确认</button>
+    <form @submit="formSubmit">
+      <div class="flex-row vertical-center flow-justify level-top">
+        <input name="givenName" placeholder="名字" class="common-class"/>
+        <input name="familyName" placeholder="姓氏" class="common-class"/>
+      </div>
+      <div class="flex-row vertical-center flow-justify level-center">
+        <input placeholder="证件类型" class="common-class"/>
+        <picker @change="bindPickerChange" :value="index" :range="array" class="common-class">
+          <p>{{array[index]}}</p>
+        </picker>
+      </div>
+      <input name="idCardNum" placeholder="证件号码" class="common-class"/>
+      <button class="button-class" type="default" form-type="submit" >确认</button>
+    </form>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ export default {
   name: "certificationLevelOne",
   data(){
     return{
+      index:0,
+      idCardType:'',
       array: ['身份证', '护照'],
     }
   },
@@ -30,8 +34,35 @@ export default {
   },
   methods:{
     bindPickerChange(e){
+      const _this = this;
       console.log('picker发送选择改变，携带值为', e.mp.detail.value)
-      this.time = e.mp.detail.value
+      if (e.mp.detail.value == 0) {
+        _this.idCardType = 1;
+      } else {
+        _this.idCardType = 2;
+      }
+    },
+    formSubmit(e){
+      const _this = this;
+      const formData = e.mp.detail.value;
+      console.log(formData)
+      const params = {
+        familyName : formData.familyName,
+        givenName  : formData.givenName,
+        idCardNum  : formData.idCardNum,
+        idCardType  : _this.idCardType,
+      };
+      _this.authenticateV1(params);
+    },
+    async authenticateV1(params){
+      const _this = this;
+      const result = await _this.$api.authenticateV1(params);
+      console.log('v1',result)
+      if (result == 200) {
+        wx.showToast({
+          title: '提交成功',
+        })
+      }
     }
   }
 }
@@ -67,6 +98,10 @@ export default {
     height: 80rpx;
     border-radius: 10rpx;
     padding-left: 20rpx;
+    line-height: 80rpx;
+  }
+  .common-class p{
+    line-height: 80rpx;
   }
   .button-class{
      width: 100%;

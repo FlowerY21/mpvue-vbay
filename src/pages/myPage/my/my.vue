@@ -85,6 +85,13 @@
             url: '../../myPage/certification/main'
           })
         }
+      },
+      async getUserInfo(){
+        const _this = this;
+        const result = await _this.$api.getUserInfo();
+        if (result.code == 200) {
+
+        }
       }
     }
   }

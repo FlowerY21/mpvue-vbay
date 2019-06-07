@@ -81,6 +81,20 @@ export default {
       const _this = this;
       const result = await this.$api.registerEx(params);
       console.log('registerEx', result)
+      if(result.code == 200){
+        wx.setStorage({
+          key:"token",
+          data:result.token
+        })
+
+
+      }else if (result.code == 402) {
+        wx.showToast({
+          title: '该号码已被注册',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     },
     async sendCode() {
       const _this = this;
@@ -107,7 +121,7 @@ export default {
         wx.showToast({
           title: '验证码发送成功',
           icon: 'success',
-          duration: 0
+          duration: 1500
         })
       }
     },

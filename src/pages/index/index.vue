@@ -125,17 +125,13 @@ export default {
           data:result.result.token
         })
         if(result.result.registered){
-          wx.switchTab({
-            url: '../homePage/home/main'
-          });
-          // wx.redirectTo({
-          //   url: '../register/main'
-          // });
-        }else{
           // wx.switchTab({
           //   url: '../homePage/home/main'
           // });
-
+          wx.redirectTo({
+            url: '../myPage/certificationLevelOne/main'
+          });
+        }else{
           wx.redirectTo({
             url: '../register/main?id=' + _this.openId
           });

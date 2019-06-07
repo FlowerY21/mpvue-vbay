@@ -41,8 +41,8 @@ export default {
     },
     async getVBC(){
       const _this = this;
-      const result = _this.$api.getVBC();
-      console.log('getVBC',result);
+      const result = await _this.$api.getVBC();
+      console.log('getVBC',result.code);
       if (result.code == 200) {
         _this.vbcTotal = result.result;
       }

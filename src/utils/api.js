@@ -39,7 +39,18 @@ export default {
   getPrefixNumbers: () => request('post','/common/getPrefixNumbers',false),
   // 获取行政区列表
   getRegions: params => request('post','/common/getRegions',false,params),
+
   // 获取当前用户VBC
   getVBC: () => request('post','/miniapp/getVBC',true),
+  // 获取用户详细信息
+  getUserInfo: () => request('post','/miniapp/getUserInfo',true),
+  // 一级认证
+  authenticateV1: params => request('post','/miniapp/authenticateV1',true,params),
+  // 二级认证
+  authenticateV2: params => request('post','/miniapp/authenticateV2',true,params),
+
+
+  // 获取商家会员信息
+  getUserInfo: params => request('post','/miniapp/business/vip/getVIPTypes',true,params),
 
 }
