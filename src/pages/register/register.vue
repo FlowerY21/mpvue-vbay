@@ -3,7 +3,7 @@
       <input v-model="phoneNum" placeholder="手机号码" class="common-class" placeholder-style="color:#CECECE"/>
       <div class="flex-row vertical-center flow-justify code-box">
         <input v-model="verificationCode" placeholder="短信验证码" class="common-class" placeholder-style="color:#CECECE"/>
-        <button class="button-class" type="default" @tap="sendCode()" :disabled="!rightPhone">
+        <button class="button-class" :class="{'gray-button':computeTime}" type="default" @tap="sendCode()" :disabled="!rightPhone">
           {{computeTime>0 ? '(' + computeTime + 's)已发送' : '发送'}}
         </button>
       </div>
@@ -74,19 +74,26 @@ export default {
         phoneNum  : _this.phoneNum,
         prefixNum  : _this.prefixNumbers[0].number,
         verificationCode   : _this.verificationCode
-      }
+      };
       _this.registerEx(params);
     },
     async registerEx(params) {
       const _this = this;
       const result = await this.$api.registerEx(params);
-      console.log('registerEx', result)
+      console.log('registerEx', result);
       if(result.code == 200){
+        wx.showToast({
+          title: '注册成功',
+          icon: 'success',
+          duration: 1500
+        });
         wx.setStorage({
           key:"token",
           data:result.token
+        });
+        wx.redirectTo({
+          url:'../myPage/bingResult/main'
         })
-
 
       }else if (result.code == 402) {
         wx.showToast({
@@ -108,22 +115,20 @@ export default {
             clearInterval(_this.intervalId)
           }
         }, 1000)
-      };
 
-      const params = {
-        phoneNum : _this.phoneNum,
-        prefixNum : _this.prefixNumbers[0].number
+        const params = {
+          phoneNum : _this.phoneNum,
+          prefixNum : _this.prefixNumbers[0].number
+        };
+        const result = await this.$api.sendSMS(params);
+        if(result.code == 200){
+          wx.showToast({
+            title: '验证码发送成功',
+            icon: 'success',
+            duration: 1500
+          })
+        }
       };
-
-      const result = await this.$api.sendSMS(params);
-      console.log('sendCode',result)
-      if(result.code == 200){
-        wx.showToast({
-          title: '验证码发送成功',
-          icon: 'success',
-          duration: 1500
-        })
-      }
     },
     async getPrefixNumbers(){
       const result  = await this.$api.getPrefixNumbers();
@@ -137,7 +142,7 @@ export default {
         code : 'AUS'
       };
       const result  = await this.$api.getRegions(params);
-      console.log('getRegions',result)
+      // console.log('getRegions',result)
       if(result.code == 200){
         this.Regions = result.result;
       }
@@ -179,5 +184,12 @@ export default {
   }
   .comment-gray-text{
     text-align: center;
+  }
+  button[disabled]{
+    background: #00b2b2;
+    color: #ffffff;
+  }
+  .gray-button{
+    background: #cccccc;
   }
 </style>

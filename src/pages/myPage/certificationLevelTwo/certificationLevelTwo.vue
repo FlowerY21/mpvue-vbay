@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="flex-row vertical-center flow-justify">
-      <div class="img-box flex-col vertical-center absolute-center">
-        <img src="../../../../static/images/card1.png" alt="cardIcon" class="card-icon">
-        <p class="common-black-text">证件正面照</p>
+      <div class="img-box flex-col vertical-center absolute-center" @tap="upLoadImage(1)">
+        <img class="ID-photo" v-if="IDPhoto1" :src="IDPhoto1" alt="IDPhoto1">
+        <div class="flex-col vertical-center" v-else>
+          <img src="../../../../static/images/card1.png" alt="cardIcon" class="card-icon">
+          <p class="common-black-text">证件正面照</p>
+        </div>
+
       </div>
       <div class="img-box flex-col vertical-center absolute-center">
         <img src="../../../../static/images/img.png" alt="cardIcon" class="card-icon">
@@ -11,9 +15,12 @@
       </div>
     </div>
     <div class="flex-row vertical-center flow-justify">
-      <div class="img-box flex-col vertical-center absolute-center">
-        <img src="../../../../static/images/card2.png" alt="cardIcon" class="card-icon">
-        <p class="common-black-text">证件背面照</p>
+      <div class="img-box flex-col vertical-center absolute-center" @tap="upLoadImage(2)">
+        <img class="ID-photo" v-if="IDPhoto2" :src="IDPhoto2" alt="IDPhoto1">
+        <div class="flex-col vertical-center" v-else>
+          <img src="../../../../static/images/card2.png" alt="cardIcon" class="card-icon">
+          <p class="common-black-text">证件背面照</p>
+        </div>
       </div>
       <div class="img-box flex-col vertical-center absolute-center">
         <img src="../../../../static/images/img.png" alt="cardIcon" class="card-icon">
@@ -21,9 +28,12 @@
       </div>
     </div>
     <div class="flex-row vertical-center flow-justify">
-      <div class="img-box flex-col vertical-center absolute-center">
-        <img src="../../../../static/images/card3.png" alt="cardIcon" class="card-icon icon2">
-        <p class="common-black-text">手持证件照</p>
+      <div class="img-box flex-col vertical-center absolute-center" @tap="upLoadImage(3)">
+        <img class="ID-photo" v-if="IDPhoto3" :src="IDPhoto3" alt="IDPhoto1">
+        <div class="flex-col vertical-center" v-else>
+          <img src="../../../../static/images/card3.png" alt="cardIcon" class="card-icon icon2">
+          <p class="common-black-text">手持证件照</p>
+        </div>
       </div>
       <div class="img-box flex-col vertical-center absolute-center">
         <img src="../../../../static/images/img.png" alt="cardIcon" class="card-icon">
@@ -42,12 +52,35 @@ export default {
   data(){
     return{
       array: ['身份证', '护照'],
+      IDPhoto1:'',
+      IDPhoto2:'',
+      IDPhoto3:'',
     }
   },
   methods:{
     bindPickerChange(e){
+      const _this = this;
       console.log('picker发送选择改变，携带值为', e.mp.detail.value)
       this.time = e.mp.detail.value
+    },
+    upLoadImage(index){
+      const _this = this;
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success (res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          if (index == 1){
+            _this.IDPhoto1 = res.tempFilePaths
+          } else if(index == 2){
+            _this.IDPhoto2 = res.tempFilePaths
+          } else {
+            _this.IDPhoto3 = res.tempFilePaths
+          }
+
+        }
+      })
     }
   }
 }
@@ -116,5 +149,9 @@ export default {
   }
   .icon2{
     width: 90rpx;
+  }
+  .ID-photo{
+    width: 100%;
+    height: 100%;
   }
 </style>

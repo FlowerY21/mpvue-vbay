@@ -62,7 +62,21 @@ export default {
         success(res) {
           if (res.authSetting['scope.userInfo']) {
             console.log('这里已经授权');
-            _this.codeSession(_this.commonParams);
+            wx.checkSession({
+              success () {
+                wx.showLoading({
+                  title: '登录中',
+                });
+
+                _this.loginVbay();
+
+                //session_key 未过期，并且在本生命周期一直有效
+              },
+              fail () {
+                // session_key 已经失效，需要重新执行登录流程
+                wx.login() //重新登录
+              }
+            })
           } else {
 
           }
@@ -92,29 +106,31 @@ export default {
     async codeSession(params){
       const _this = this;
       const result = await this.$api.codeSession(params);
-      console.log('codeSession', result)
+
+      console.log('codeSession', result);
+
       if (result.code == 200) {
         wx.setStorage({
           key:"token",
           data:result.result.token
-        })
-
+        });
         // _this.session_key = result.result.session.session_key;
         wx.showLoading({
           title: '登录中',
         });
 
         _this.openId = result.result.session.openid;
-        const params = {
-          openId : _this.openId
-        };
 
-        _this.loginVbay(params);
+
+        _this.loginVbay();
       }
     },
     // 登录vbay
-    async loginVbay(params) {
+    async loginVbay() {
       const _this = this;
+      const params = {
+        openId : _this.openId
+      };
       const result = await this.$api.login(params);
       console.log('login', result)
       if (result.code == 200) {
@@ -125,11 +141,8 @@ export default {
           data:result.result.token
         })
         if(result.result.registered){
-          // wx.switchTab({
-          //   url: '../homePage/home/main'
-          // });
-          wx.redirectTo({
-            url: '../myPage/certificationLevelOne/main'
+          wx.switchTab({
+            url: '../homePage/home/main'
           });
         }else{
           wx.redirectTo({

@@ -2,16 +2,16 @@
   <div class="common-padding">
     <form @submit="formSubmit">
       <div class="flex-row vertical-center flow-justify level-top">
-        <input name="givenName" placeholder="名字" class="common-class"/>
-        <input name="familyName" placeholder="姓氏" class="common-class"/>
+        <input name="givenName" placeholder="名字" class="common-class" placeholder-style="color:#cecece;"/>
+        <input name="familyName" placeholder="姓氏" class="common-class" placeholder-style="color:#cecece;"/>
       </div>
       <div class="flex-row vertical-center flow-justify level-center">
-        <input placeholder="证件类型" class="common-class"/>
+        <input placeholder="证件类型" class="common-class" placeholder-style="color:#cecece;"/>
         <picker @change="bindPickerChange" :value="index" :range="array" class="common-class">
           <p>{{array[index]}}</p>
         </picker>
       </div>
-      <input name="idCardNum" placeholder="证件号码" class="common-class"/>
+      <input name="idCardNum" placeholder="证件号码" class="common-class" placeholder-style="color:#cecece;"/>
       <button class="button-class" type="default" form-type="submit" >确认</button>
     </form>
   </div>
@@ -102,6 +102,7 @@ export default {
   }
   .common-class p{
     line-height: 80rpx;
+    color: #cecece;
   }
   .button-class{
      width: 100%;
