@@ -64,18 +64,41 @@ export default {
     },
     doSubmit() {
       const _this = this;
-      const password = _this.$base64.encode(_this.$md5(_this.pwd));
-      const params = {
-        email : _this.email,
-        invitationCode : _this.invitationCode,
-        location : 'AUS0NTDRW',
-        openId : _this.openId,
-        password  : password,
-        phoneNum  : _this.phoneNum,
-        prefixNum  : _this.prefixNumbers[0].number,
-        verificationCode   : _this.verificationCode
-      };
-      _this.registerEx(params);
+      if (_this.email == '' || _this.email == undefined) {
+        wx.showToast({
+          title: '邮箱不能为空',
+          icon: 'none',
+          duration: 1500
+        });
+        return;
+      }
+      if (_this.pwd =='' && _this.pwd == undefined) {
+        wx.showToast({
+          title: '密码不能为空',
+          icon: 'none',
+          duration: 1500
+        });
+      } else if (_this.pwd != _this.rePwd){
+        wx.showToast({
+          title: '两次密码输入不一致',
+          icon: 'none',
+          duration: 1500
+        });
+      } else {
+        const password = _this.$base64.encode(_this.$md5(_this.pwd));
+        const params = {
+          email : _this.email,
+          invitationCode : _this.invitationCode,
+          location : 'AUS0NTDRW',
+          openId : _this.openId,
+          password  : password,
+          phoneNum  : _this.phoneNum,
+          prefixNum  : _this.prefixNumbers[0].number,
+          verificationCode   : _this.verificationCode
+        };
+        _this.registerEx(params);
+      }
+
     },
     async registerEx(params) {
       const _this = this;
