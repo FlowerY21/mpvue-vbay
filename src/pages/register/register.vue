@@ -105,22 +105,19 @@ export default {
       const result = await this.$api.registerEx(params);
       console.log('registerEx', result);
       if(result.code == 200){
-        wx.showToast({
-          title: '注册成功',
-          icon: 'success',
-          duration: 1500
-        });
+        console.log('result',result.token)
+        console.log('token',result.result.token)
         wx.setStorage({
           key:"token",
-          data:result.token
+          data:result.result.token
         });
         wx.redirectTo({
           url:'../myPage/bingResult/main'
         })
 
-      }else if (result.code == 402) {
+      }else {
         wx.showToast({
-          title: '该号码已被注册',
+          title: result.msg,
           icon: 'none',
           duration: 1500
         })

@@ -45,6 +45,8 @@ export default {
   getVBC: () => request('post','/miniapp/getVBC',true),
   // 获取用户详细信息
   getUserInfo: () => request('post','/miniapp/getUserInfo',true),
+  // 获取认证信息
+  getAuthenticate: () => request('post','/miniapp/getAuthenticate',true),
   // 一级认证
   authenticateV1: params => request('post','/miniapp/authenticateV1',true,params),
   // 二级认证
@@ -52,6 +54,6 @@ export default {
 
 
   // 获取商家会员信息
-  getUserInfo: params => request('post','/miniapp/business/vip/getVIPTypes',true,params),
+  getVIPTypes: params => request('post','/miniapp/business/vip/getVIPTypes',true,params),
 
 }

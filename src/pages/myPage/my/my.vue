@@ -3,7 +3,7 @@
     <div class="my-top flex-col vertical-center">
       <div class="my-head" style="background:url(https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640) center/cover no-repeat"></div>
       <p class="user-name">FlowerY21</p>
-      <p class="user-tip">Address:ghjklfghjkl</p>
+      <p class="user-tip">Address:{{userInfo.location}}l</p>
       <p class="data-msg">资料完整度：75%</p>
       <progress class="data-percent" :percent="percent" active stroke-width="4" color="#FF9800"/>
     </div>
@@ -15,7 +15,15 @@
             <img v-if="item.iconImg" :src="item.iconImg" alt="icon" class="icon" :class="{'time-icon':index2 == 3}">
             <p class="item-name">{{item.name}}</p>
           </div>
-          <img src="../../../../static/images/right2.png" alt="icon" class="right-icon">
+          <div class="flex-row vertical-center">
+            <div v-if="index == 0 && index2 == 0">
+              <p class="level-text" v-if="userInfo.idCardPhotoVerified == 2">LV.2</p>
+              <p class="level-text" v-else>{{userInfo.idCardVerified == 2 ? 'LV.1' : ''}}</p>
+            </div>
+
+            <img src="../../../../static/images/right2.png" alt="icon" class="right-icon">
+          </div>
+
         </div>
       </div>
     </div>
@@ -33,12 +41,7 @@
       return{
         percent:75,
         lists:[{
-          itemList:[
-          //   {
-          //   iconImg:'../../../static/images/icon0.png',
-          //   name:'付款方式',
-          // },
-            {
+          itemList:[{
             iconImg:'../../../static/images/icon1.png',
             name:'实名认证',
           },{
@@ -64,8 +67,14 @@
 
             name:'关于VBAY',
           }]
-        }]
+        }],
+        userInfo:{},
       }
+    },
+    mounted(){
+      const _this = this;
+      _this.getUserInfo();
+      console.log('e',_this)
     },
     methods:{
       exit(){},
@@ -89,10 +98,11 @@
       async getUserInfo(){
         const _this = this;
         const result = await _this.$api.getUserInfo();
+        console.log('userInfo',result)
         if (result.code == 200) {
-
+          _this.userInfo = result.result;
         }
-      }
+      },
     }
   }
 </script>
@@ -147,7 +157,7 @@
     height: 30rpx;
   }
   .item-name{
-    font-size: 36rpx;
+    font-size: 28rpx;
     color: #101010;
     line-height: 90rpx;
   }
@@ -165,5 +175,9 @@
   .time-icon{
     width: 50rpx;
     height: 46rpx;
+  }
+  .level-text{
+    color: #00b2b2;
+    font-size: 28rpx;
   }
 </style>

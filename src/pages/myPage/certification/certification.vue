@@ -1,9 +1,16 @@
 <template>
   <div>
-    <div class="item-list flex-row vertical-center flow-justify" v-for="(item,index) in itemList" :key="index" @click="goDetail(index)">
+    <div class="item-list flex-row vertical-center flow-justify" @click="goDetail(0)">
       <div class="flex-row vertical-center">
-        <p class="level">{{item.level}}</p>
-        <p class="common-black-text" :class="{'on':item.type == 1}">{{item.name}}</p>
+        <p class="level">LV.1</p>
+        <p class="common-black-text" :class="{'on':false}">{{authenticate.familyName}}{{authenticate.givenName}} {{authenticate.idCardNum}}</p>
+      </div>
+      <img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">
+    </div>
+    <div class="item-list flex-row vertical-center flow-justify" @click="goDetail(1)">
+      <div class="flex-row vertical-center">
+        <p class="level">LV.2</p>
+        <p class="common-black-text" :class="{'on':true}">待审核</p>
       </div>
       <img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">
     </div>
@@ -15,21 +22,18 @@ export default {
   name: "certification",
   data(){
     return{
-      itemList:[{
-        level:'LV.1',
-        name:'张三 21039948850607708',
-        type:0
-      },{
-        level:'LV.2',
-        name:'待审核',
-        type:1
-      }]
+
+      authenticate:{},
     }
   },
   onUnload: function () {
     wx.reLaunch({
       url: '../../myPage/my/main'
     })
+  },
+  mounted(){
+    const _this = this;
+    _this.getAuthenticate();
   },
   methods:{
     goDetail(index){
@@ -41,6 +45,14 @@ export default {
         wx.navigateTo({
           url: '../../myPage/certificationLevelTwo/main'
         })
+      }
+    },
+    async getAuthenticate(){
+      const _this = this;
+      const result = await _this.$api.getAuthenticate();
+      console.log('getAuthenticate',result)
+      if (result.code == 200) {
+        _this.authenticate = result.result
       }
     }
   }

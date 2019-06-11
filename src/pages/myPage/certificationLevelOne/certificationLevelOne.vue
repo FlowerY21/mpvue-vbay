@@ -23,7 +23,7 @@ export default {
   data(){
     return{
       index:0,
-      idCardType:'',
+      idCardType:0,
       array: ['身份证', '护照'],
     }
   },
