@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="common-padding">
-      <button class="button-class" type="default" @tap="goPage()" >确认</button>
+      <button class="button-class" type="default" @tap="submit()" >确认</button>
     </div>
   </div>
 </template>
@@ -55,6 +55,10 @@ export default {
       IDPhoto1:'',
       IDPhoto2:'',
       IDPhoto3:'',
+      idCardPhotoBack:'',
+      idCardPhotoFront:'',
+      idCardPhotoInHand:'',
+
     }
   },
   methods:{
@@ -71,16 +75,43 @@ export default {
         sourceType: ['album', 'camera'],
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
+          console.log(res)
           if (index == 1){
-            _this.IDPhoto1 = res.tempFilePaths
+            _this.IDPhoto1 = res.tempFilePaths;
+            _this.idCardPhotoFront = res.tempFiles;
           } else if(index == 2){
-            _this.IDPhoto2 = res.tempFilePaths
+            _this.IDPhoto2 = res.tempFilePaths;
+            _this.idCardPhotoBack = res.tempFiles;
           } else {
-            _this.IDPhoto3 = res.tempFilePaths
+            _this.IDPhoto3 = res.tempFilePaths;
+            _this.idCardPhotoInHand = res.tempFiles;
           }
 
         }
       })
+    },
+    async submit(){
+      const _this = this;
+      const params = {
+        idCardPhotoBack : _this.idCardPhotoBack,
+        idCardPhotoFront : _this.idCardPhotoFront,
+        idCardPhotoInHand : _this.idCardPhotoInHand
+      };
+      const result = await _this.$api.authenticateV2(params)
+      console.log('v2',result)
+      if (result.code == 200) {
+        wx.showToast({
+          title: '提交成功',
+        });
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.showToast({
+          title: result.message,
+          icon: 'none',
+        });
+      }
     }
   }
 }

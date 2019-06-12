@@ -65,6 +65,11 @@ export default {
         wx.navigateBack({
           delta: 1
         })
+      } else {
+        wx.showToast({
+          title: result.message,
+          icon: 'none',
+        });
       }
     }
   }
