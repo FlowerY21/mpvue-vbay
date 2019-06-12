@@ -58,9 +58,12 @@ export default {
       const _this = this;
       const result = await _this.$api.authenticateV1(params);
       console.log('v1',result)
-      if (result == 200) {
+      if (result.code == 200) {
         wx.showToast({
           title: '提交成功',
+        });
+        wx.navigateBack({
+          delta: 1
         })
       }
     }

@@ -7,8 +7,8 @@
           {{computeTime>0 ? '(' + computeTime + 's)已发送' : '发送'}}
         </button>
       </div>
-      <input v-model="pwd" placeholder="登录密码" class="common-class" placeholder-style="color:#CECECE"/>
-      <input v-model="rePwd" placeholder="确认登录密码" class="common-class" placeholder-style="color:#CECECE"/>
+      <input v-model="pwd" type="password" placeholder="登录密码" class="common-class" placeholder-style="color:#CECECE"/>
+      <input v-model="rePwd" type="password" placeholder="确认登录密码" class="common-class" placeholder-style="color:#CECECE"/>
       <input v-model="email" placeholder="电子邮箱" class="common-class" placeholder-style="color:#CECECE"/>
       <!--<picker class="common-class" mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="Regions">-->
         <!--{{Regions[0][multiIndex[0]]}}，{{Regions[1][multiIndex[1]]}}，{{Regions[2][multiIndex[2]]}}-->

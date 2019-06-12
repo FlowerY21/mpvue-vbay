@@ -74,7 +74,7 @@ export default {
               },
               fail () {
                 // session_key 已经失效，需要重新执行登录流程
-                wx.login() //重新登录
+                _this.login() //重新登录
               }
             })
           } else {
