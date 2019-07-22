@@ -64,6 +64,14 @@ export default {
     },
     doSubmit() {
       const _this = this;
+      if (!_this.rightPhone) {
+        wx.showToast({
+          title: '手机号码格式不正确',
+          icon: 'none',
+          duration: 1500
+        });
+        return;
+      }
       if (_this.email == '' || _this.email == undefined) {
         wx.showToast({
           title: '邮箱不能为空',
@@ -103,10 +111,9 @@ export default {
     async registerEx(params) {
       const _this = this;
       const result = await this.$api.registerEx(params);
-      console.log('registerEx', result);
+
       if(result.code == 200){
-        console.log('result',result.token)
-        console.log('token',result.result.token)
+
         wx.setStorage({
           key:"token",
           data:result.result.token
@@ -117,7 +124,7 @@ export default {
 
       }else {
         wx.showToast({
-          title: result.msg,
+          title: result.message,
           icon: 'none',
           duration: 1500
         })

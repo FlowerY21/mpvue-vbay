@@ -67,7 +67,7 @@ export default {
 
 <style scoped>
   .top-container{
-    background: #F5F5F5;
+    background: #31B9A5;
     width: 100%;
     height: 110rpx;
     box-sizing: border-box;

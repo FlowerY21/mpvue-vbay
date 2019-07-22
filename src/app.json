@@ -31,9 +31,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F5F5F5",
+    "navigationBarBackgroundColor": "#31B9A5",
     "navigationBarTitleText": "微贝",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F5F5"
   },
   "tabBar": {
