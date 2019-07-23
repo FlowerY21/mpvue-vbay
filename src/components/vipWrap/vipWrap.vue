@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="vip-progress">
-      <progress :percent="percent" active color="#00B2B2"/>
+      <progress :percent="percent" active color="#31B9A5"/>
       <div class="progress-content flex-row vertical-center flow-justify">
         <div class="progress-text">
           <p class="progress-text-name">银贝</p>
@@ -87,7 +87,7 @@ export default {
   .percent-button{
     width: 100%;
     height: 100rpx;
-    background: #00B2B2;
+    background: #31B9A5;
     color: #ffffff;
     text-align: center;
     line-height: 100rpx;

@@ -86,7 +86,7 @@ export default {
   .button-class{
     width: 50%;
     height: 100%;
-    background: #00b2b2;
+    background: #31B9A5;
     text-align: center;
     color: #ffffff;
     line-height: 90rpx;

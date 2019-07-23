@@ -45,7 +45,7 @@ export default {
   .button-class{
     width: 280rpx;
     height: 80rpx;
-    background: #00B2B2;
+    background: #31B9A5;
     color: #ffffff;
     text-align: center;
     line-height: 80rpx;
@@ -55,7 +55,7 @@ export default {
   }
   .notice-title{
     font-size: 40rpx;
-    color: #00B2B2;
+    color: #31B9A5;
     margin-bottom: 30rpx;
   }
   .notice-box{

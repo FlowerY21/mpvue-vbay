@@ -48,7 +48,7 @@ export default {
   }
   .ticket-status{
     font-size: 28rpx;
-    color: #00b2b2;
+    color: #31B9A5;
   }
   .ticket-center{
     padding-top: 40rpx;

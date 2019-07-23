@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="pay-num flex-col absolute-center">
-      <input class="pay-num-input" placeholder="输入金额" placeholder-style="color:#00b2b2;" auto-focus/>
+      <input class="pay-num-input" placeholder="输入金额" placeholder-style="color:#31B9A5;" auto-focus/>
       <p class="pay-num-msg">AUD</p>
     </div>
     <div class="flex-row vertical-center flow-justify back-gray common-padding">
@@ -36,7 +36,7 @@
   .pay-num {
     width: 100%;
     height: 280rpx;
-    background: #00B2B2;
+    background: #31B9A5;
   }
 
   .pay-num-input {
@@ -47,7 +47,7 @@
     border-radius: 100rpx;
     background: #ffffff;
     font-size: 36rpx;
-    color: #00B2B2;
+    color: #31B9A5;
     line-height: 100rpx;
     padding-left: 30rpx;
   }
@@ -57,7 +57,7 @@
     margin-top: 20rpx;
   }
   .input-class{
-    color: #00B2B2;
+    color: #31B9A5;
   }
   .back-gray{
     background: #f5f5f5;

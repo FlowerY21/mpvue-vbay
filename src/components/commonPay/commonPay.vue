@@ -10,7 +10,7 @@
         <movable-area  class="movable-area" id="movable-area">
           <movable-view @change="voiceSeekMove" @touchend='seekTouchEnd' direction="horizontal" class='movable-view' damping="1000"></movable-view>
         </movable-area>
-        <progress :percent="percent" color="#00B2B2"stroke-width="5" class="pay-progress" />
+        <progress :percent="percent" color="#31B9A5"stroke-width="5" class="pay-progress" />
       </div>
       <div class="change-button">+</div>
     </div>
@@ -64,7 +64,7 @@
     line-height: 1.5;
   }
   .pay-notice span{
-    color: #00b2b2;
+    color: #31B9A5;
   }
   .change-button{
     width: 60rpx;
@@ -74,7 +74,7 @@
     border-radius: 50%;
     text-align: center;
     line-height: 60rpx;
-    background: #00b2b2;
+    background: #31B9A5;
     color: #FFFFFF;
     font-size: 40rpx;
     font-weight: bold;
@@ -122,7 +122,7 @@
   }
   .get-price{
     font-size: 36rpx;
-    color: #00b2b2;
+    color: #31B9A5;
     margin-top: 10rpx;
   }
   .button-class{
@@ -131,7 +131,7 @@
     color: #ffffff;
     line-height: 80rpx;
     text-align: center;
-    background: #00b2b2;
+    background: #31B9A5;
     border-radius: 80rpx;
     font-size: 28rpx;
   }

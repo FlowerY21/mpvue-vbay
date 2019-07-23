@@ -68,7 +68,7 @@ export default {
   .level {
     width: 100rpx;
     height: 60rpx;
-    background: #00b2b2;
+    background: #31B9A5;
     text-align: center;
     line-height: 60rpx;
     color: #FFFFFF;
@@ -81,6 +81,6 @@ export default {
     height: 30rpx;
   }
   .common-black-text.on{
-    color: #00b2b2;
+    color: #31B9A5;
   }
 </style>

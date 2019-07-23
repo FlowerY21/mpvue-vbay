@@ -55,6 +55,6 @@ export default {
     color: #999999;
   }
   .record-status .green{
-    color: #00B2B2;
+    color: #31B9A5;
   }
 </style>

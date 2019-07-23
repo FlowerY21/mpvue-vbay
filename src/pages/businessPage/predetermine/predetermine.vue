@@ -78,7 +78,7 @@ export default {
 <style scoped>
   .view-record{
     font-size: 24rpx;
-    color: #00B2B2;
+    color: #31B9A5;
     text-align: right;
     margin: 20rpx 0 40rpx;
   }
@@ -98,7 +98,7 @@ export default {
   .record-button{
     width:280rpx;
     height: 80rpx;
-    background: #00B2B2;
+    background: #31B9A5;
     color: #ffffff;
     text-align: center;
     line-height: 80rpx;

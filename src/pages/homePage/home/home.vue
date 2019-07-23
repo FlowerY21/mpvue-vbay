@@ -28,8 +28,8 @@
       </div>
 
     </div>
-    <!--<img-swiper></img-swiper>-->
-    <tab-swiper></tab-swiper>
+    <img-swiper></img-swiper>
+    <tab-swiper :tabList="businessTypeList"></tab-swiper>
   </div>
 </template>
 
@@ -46,7 +46,11 @@
       return {
         index: 0,
         multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'], ['猪肉绦虫', '吸血虫']],
+        businessTypeList:[],
       }
+    },
+    mounted(){
+      this.getBusinessTypeList();
     },
     methods:{
       bindMultiPickerChange: function (e) {
@@ -58,6 +62,13 @@
       bindMultiPickerColumnChange: function (e) {
         console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
       },
+      async getBusinessTypeList(){
+        const result = await this.$api.businessTypeList();
+        if(result.code == 200){
+          this.businessTypeList = result.result;
+        }
+
+      }
     }
   }
 </script>

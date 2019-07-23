@@ -35,7 +35,7 @@
 <style scoped>
   .title{
     font-size: 56rpx;
-    color: #00b2b2;
+    color: #31B9A5;
     margin-bottom:44rpx;
   }
   .result-box{

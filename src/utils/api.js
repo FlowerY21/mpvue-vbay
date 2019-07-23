@@ -1,7 +1,7 @@
 
 import util from './index' // 此处，引入存放对promise处理的文件
 
-const ip = 'https://39.98.58.234:7443'  // 后台的ip地址
+const ip = 'https://3.104.54.171:7443'  // 后台的ip地址
 const getRequest = util.httpsPromisify(wx.request)
 
 
@@ -55,5 +55,11 @@ export default {
 
   // 获取商家会员信息
   getVIPTypes: params => request('post','/miniapp/business/vip/getVIPTypes',true,params),
+  // '获取商户分类列表'
+  businessTypeList: () => request('post','/consumer/business/businessTypeList'),
 
+
+  // ======我的======
+  // '获取商户分类列表'
+  accountList: params => request('post','/consumer/accountList', true, params),
 }

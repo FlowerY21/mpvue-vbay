@@ -190,7 +190,7 @@ export default {
     line-height: 80rpx;
     border-radius: 10rpx;
     padding-left: 20rpx;
-    color: #CECECE;
+    color: #aaaaaa;
     font-size: 28rpx;
     border: 2rpx solid #dddddd;
   }
@@ -200,7 +200,7 @@ export default {
     color: #ffffff;
     line-height: 80rpx;
     text-align: center;
-    background: #00b2b2;
+    background: #31B9A5;
     border-radius: 80rpx;
     font-size: 28rpx;
     margin: 60rpx 0 40rpx;
@@ -213,7 +213,7 @@ export default {
     text-align: center;
   }
   button[disabled]{
-    background: #00b2b2;
+    background: #31B9A5;
     color: #ffffff;
   }
   .gray-button{

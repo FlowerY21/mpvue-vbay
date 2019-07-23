@@ -3,7 +3,7 @@
     <div class="tab-container">
       <swiper :autoplay="autoplay" :display-multiple-items="multipleItem">
         <swiper-item v-for="(item,index) in tabList" :key="index" @tap="tabChange(index)" :class="{'on':index == showClass}">
-          <p>{{item.label}}</p>
+          <p>{{item.name}}</p>
         </swiper-item>
       </swiper>
     </div>
@@ -24,28 +24,34 @@ export default {
   components: {
     homeList
   },
+  props:{
+    tabList:{
+      type:Array,
+      default:()=>[]
+    }
+  },
   data() {
     return {
-      tabList: [
-        {
-          label: '推荐'
-        }, {
-          label: '玩乐'
-        }, {
-          label: '美食'
-        }, {
-          label: '购物'
-        }, {
-          label: '服务'
-        }, {
-          label: '组织'
-        }, {
-          label: '活动'
-        }
-      ],
+      // tabList: [
+      //   {
+      //     label: '推荐'
+      //   }, {
+      //     label: '玩乐'
+      //   }, {
+      //     label: '美食'
+      //   }, {
+      //     label: '购物'
+      //   }, {
+      //     label: '服务'
+      //   }, {
+      //     label: '组织'
+      //   }, {
+      //     label: '活动'
+      //   }
+      // ],
       contentList: [{},{}],
       autoplay: false,
-      multipleItem: 5,
+      multipleItem: this.tabList.length,
       showClass:'',
     }
   },
@@ -83,7 +89,7 @@ export default {
     position: absolute;
     width: 50%;
     height: 10rpx;
-    background: #00B2B2;
+    background: #31B9A5;
     bottom: 0;
     left: 0;
     right: 0;

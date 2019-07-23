@@ -73,11 +73,11 @@
   }
   .donation-unit{
     font-size: 20rpx;
-    color: #00b2b2;
+    color: #31B9A5;
   }
   .donation-num{
     font-size: 72rpx;
-    color: #00b2b2;
+    color: #31B9A5;
   }
   .button-class{
     width: 100%;
@@ -85,7 +85,7 @@
     color: #ffffff;
     line-height: 80rpx;
     text-align: center;
-    background: #00b2b2;
+    background: #31B9A5;
     border-radius: 80rpx;
     font-size: 28rpx;
     margin: 60rpx 0 40rpx;

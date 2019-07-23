@@ -110,7 +110,7 @@
 <style scoped>
   .my-top {
     width: 100%;
-    background: #00b2b2;
+    background: #31B9A5;
     padding: 60rpx 0 40rpx;
   }
 
@@ -167,7 +167,7 @@
     color: #ffffff;
     line-height: 80rpx;
     text-align: center;
-    background: #00b2b2;
+    background: #31B9A5;
     border-radius: 80rpx;
     font-size: 28rpx;
     margin: 60rpx 0 40rpx;
@@ -177,7 +177,7 @@
     height: 46rpx;
   }
   .level-text{
-    color: #00b2b2;
+    color: #31B9A5;
     font-size: 28rpx;
   }
 </style>

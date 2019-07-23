@@ -161,7 +161,7 @@ export default {
   }
   .title {
     font-size: 96rpx;
-    color: #00b2b2;
+    color: #31B9A5;
     margin-bottom: 150rpx;
   }
   .button-class{
@@ -170,7 +170,7 @@ export default {
     color: #ffffff;
     line-height: 80rpx;
     text-align: center;
-    background: #00b2b2;
+    background: #31B9A5;
     border-radius: 10rpx;
     font-size: 28rpx;
     margin: 60rpx 0 40rpx;

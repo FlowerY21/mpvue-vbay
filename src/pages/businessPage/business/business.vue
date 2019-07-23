@@ -163,8 +163,8 @@ export default {
     position: relative;
   }
   .list-tab .on{
-    color: #00B2B2;
-    border-bottom: 2rpx solid #00B2B2;
+    color: #31B9A5;
+    border-bottom: 2rpx solid #31B9A5;
   }
   .share-icon{
     width: 44rpx;

@@ -1,6 +1,21 @@
 <template>
   <div>
-    <common-select></common-select>
+    <div class="picker-wraper common-padding flex-row vertical-center">
+      <picker mode="date" :value="chooseDate" fields="month" start="1990-09" end="2090-09" @change="bindDateChange">
+        <div class="flex-row down-tap vertical-center">
+          <p>{{chooseDate}}</p>
+          <img src="../../../../static/images/down.png" alt="downIcon">
+        </div>
+      </picker>
+
+      <picker mode="selector" @change="bindPickerChange" :value="typeIndex" :range="typeList">
+        <div class="flex-row down-tap vertical-center">
+          <p>{{typeList[typeIndex]}}</p>
+          <img src="../../../../static/images/down.png" alt="downIcon">
+        </div>
+      </picker>
+
+    </div>
     <div class="common-padding">
       <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
         <div class="record-head" :style="'background:url('+item.imgUrl+') center/cover no-repeat'"></div>
@@ -22,13 +37,9 @@
 </template>
 
 <script>
-import commonSelect from '@/components/commonSelect/commonSelect'
 
 export default {
   name: "recordList",
-  components: {
-    commonSelect
-  },
   data() {
     return {
       list: [{
@@ -40,8 +51,49 @@ export default {
       },{
         imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
         status:2
-      }]
+      }],
+      typeList:['全部','进账','支出'],
+      chooseDate: this.getDate(),
+      typeIndex:0,
+      pageNo:'1',
+      pageSize:'10',
     }
+  },
+  mounted(){
+    this.getList();
+  },
+  methods:{
+    async getList(){
+      const params = {
+        month : this.chooseDate,
+        type : this.typeIndex,
+        pageNo : this.pageNo,
+        pageSize : this.pageSize
+      };
+      const result = await this.$api.accountList(params);
+      if (result.code == 200) {
+        this.list = result.result.records;
+      }
+    },
+    bindDateChange: function(e) {
+      // console.log('picker发送选择改变，携带值为', e.mp.detail.value);
+      this.chooseDate = e.mp.detail.value
+    },
+    bindPickerChange(e){
+      console.log('picker发送选择改变，携带值为', e.mp.detail.value);
+      this.typeIndex = e.mp.detail.value
+    },
+    getDate(){
+      var timestamp = Date.parse(new Date());
+      var date = new Date(timestamp);
+      //获取年份  
+      var Y =date.getFullYear();
+      //获取月份  
+      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+      //获取当日日期 
+      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+      return Y + '-' + M;
+    },
   }
 }
 </script>
@@ -64,7 +116,7 @@ export default {
     color: #999999;
   }
   .record-status .green{
-    color: #00B2B2;
+    color: #31B9A5;
   }
   .big-text{
     font-size: 40rpx;
@@ -76,5 +128,24 @@ export default {
   }
   .red{
     color: #E51C23;
+  }
+
+  .picker-wraper{
+    width: 100%;
+    height: 100rpx;
+    border-bottom: 2rpx solid #dddddd;
+  }
+  .picker-wraper p{
+    font-size: 24rpx;
+    color: #101010;
+    line-height: 100rpx;
+  }
+  .down-tap{
+    margin-right: 100rpx;
+  }
+  .down-tap img{
+    width: 20rpx;
+    height: 20rpx;
+    margin-left: 20rpx;
   }
 </style>

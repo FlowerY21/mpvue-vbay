@@ -37,7 +37,7 @@ export default {
   }
   .price-num{
     font-size: 72rpx;
-    color: #00B2B2;
+    color: #31B9A5;
     margin-bottom: 60rpx;
   }
   .price-content p{
@@ -52,7 +52,7 @@ export default {
     margin-top: 110rpx;
     width: 280rpx;
     height: 80rpx;
-    background: #00B2B2;
+    background: #31B9A5;
     color: #ffffff;
     text-align: center;
     line-height: 80rpx;

@@ -106,7 +106,7 @@ export default {
     margin: 10rpx 0;
   }
   .activity-button{
-    background: #00B2B2;
+    background: #31B9A5;
     color: #FFFFFF;
     font-size: 24rpx;
     text-align: center;

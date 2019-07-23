@@ -106,13 +106,13 @@ export default {
     background: #ffffff;
   }
   .list-tab .on{
-    color: #00B2B2;
+    color: #31B9A5;
   }
   .list-tab .on::after{
     content: '';
     width: 50%;
     height: 2rpx;
-    background: #00b2b2;
+    background: #31B9A5;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -155,7 +155,7 @@ export default {
   .button-class{
     width: 200rpx;
     height: 60rpx;
-    background: #00b2b2;
+    background: #31B9A5;
     text-align: center;
     color: #ffffff;
     line-height: 60rpx;
