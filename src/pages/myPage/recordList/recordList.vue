@@ -17,21 +17,23 @@
 
     </div>
     <div class="common-padding">
-      <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
-        <div class="record-head" :style="'background:url('+item.imgUrl+') center/cover no-repeat'"></div>
-        <div class="record-right flex-row vertical-center flow-justify">
-          <div class="flex-col">
-            <p class="record-msg common-black-text">预订座位</p>
-            <p class="record-time">2019-5-12 13:36</p>
-          </div>
-          <div class="record-status">
-            <div>
-              <p class="big-text">-210AUD</p>
-              <p class="small-text">-500VBC</p>
+      <scroll-view scroll-y="true" @scrolltolower="searchScrollLower">
+        <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
+          <div class="record-head" :style="'background:url('+item.imgUrl+') center/cover no-repeat'"></div>
+          <div class="record-right flex-row vertical-center flow-justify">
+            <div class="flex-col">
+              <p class="record-msg common-black-text">预订座位</p>
+              <p class="record-time">2019-5-12 13:36</p>
+            </div>
+            <div class="record-status">
+              <div>
+                <p class="big-text">-210AUD</p>
+                <p class="small-text">-500VBC</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </scroll-view>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@ export default {
       },{
         imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
         status:2
-      }],
+      },],
       typeList:['全部','进账','支出'],
       chooseDate: this.getDate(),
       typeIndex:0,
@@ -93,6 +95,9 @@ export default {
       //获取当日日期 
       var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
       return Y + '-' + M;
+    },
+    searchScrollLower(e){
+      console.log('scroll',e)
     },
   }
 }
