@@ -78,13 +78,13 @@ export default {
           console.log(res)
           if (index == 1){
             _this.IDPhoto1 = res.tempFilePaths;
-            _this.idCardPhotoFront = res.tempFiles;
+            _this.idCardPhotoFront = res.tempFiles[0];
           } else if(index == 2){
             _this.IDPhoto2 = res.tempFilePaths;
-            _this.idCardPhotoBack = res.tempFiles;
+            _this.idCardPhotoBack = res.tempFiles[0];
           } else {
             _this.IDPhoto3 = res.tempFilePaths;
-            _this.idCardPhotoInHand = res.tempFiles;
+            _this.idCardPhotoInHand = res.tempFiles[0];
           }
 
         }

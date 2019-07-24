@@ -11,7 +11,7 @@ export const getToken = () => {
   return res
 }
 
-const request = (method, url, needToken, data = {}) => { // method为请求方法，url为接口路径，data为传参
+const request = (method, url, needToken, data = {}, type) => { // method为请求方法，url为接口路径，data为传参
   return getRequest({
     url: ip + url,
     data: data,
@@ -21,7 +21,7 @@ const request = (method, url, needToken, data = {}) => { // method为请求方�
     // }
 
     header: Object.assign({
-      "Content-Type":"application/x-www-form-urlencoded"
+      "Content-Type": type ? 'multipart/form-data' : "application/x-www-form-urlencoded"
     }, needToken ? {'vbay-access-token': getToken()} : {}),
   })
 }
@@ -50,7 +50,7 @@ export default {
   // 一级认证
   authenticateV1: params => request('post','/miniapp/authenticateV1',true,params),
   // 二级认证
-  authenticateV2: params => request('post','/miniapp/authenticateV2',true,params),
+  authenticateV2: params => request('post','/miniapp/authenticateV2',true,params, true),
 
 
   // 获取商家会员信息
