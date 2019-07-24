@@ -20,43 +20,10 @@ export default {
   data(){
     return{
       percent:25,
-      lists:[{
-        itemList:[
-          //   {
-          //   iconImg:'../../../static/images/icon0.png',
-          //   name:'付款方式',
-          // },
-          {
-            iconImg:'../../../static/images/icon1.png',
-            name:'实名认证',
-          },{
-            iconImg:'../../../static/images/icon2.png',
-            name:'邀请朋友',
-          },{
-            iconImg:'../../../static/images/icon3.png',
-            name:'交易记录',
-          },{
-            iconImg:'../../../static/images/icon4.png',
-            name:'我的活动',
-          }]
-      },{
-        itemList:[{
-          name:'反馈',
-        },{
 
-          name:'服务条款',
-        },{
-
-          name:'隐私政策',
-        },{
-
-          name:'关于VBAY',
-        }]
-      }]
     }
   },
   methods:{
-    exit(){},
     goPage(index){
       if(index == 0){
         wx.navigateTo({

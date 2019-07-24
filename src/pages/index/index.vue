@@ -35,7 +35,10 @@ export default {
         console.log('用户按了允许授权按钮');
         // 保存用户信息
         let {encryptedData, userInfo, iv} = e.mp.detail;
-
+        wx.setStorage({
+          key:"userInfo",
+          data: userInfo
+        });
         _this.commonParams = {
           city : userInfo.city,
           code : _this.code,
@@ -107,8 +110,6 @@ export default {
       const _this = this;
       const result = await this.$api.codeSession(params);
 
-      console.log('codeSession', result);
-
       if (result.code == 200) {
         wx.setStorage({
           key:"token",
@@ -121,6 +122,10 @@ export default {
 
         _this.openId = result.result.session.openid;
 
+        wx.setStorage({
+          key:"openId",
+          data: _this.openId
+        });
 
         _this.loginVbay();
       }
@@ -132,21 +137,22 @@ export default {
         openId : _this.openId
       };
       const result = await this.$api.login(params);
-      console.log('login', result)
+
       if (result.code == 200) {
-        wx.hideLoading()
+        wx.hideLoading();
         // 更新token
         wx.setStorage({
           key:"token",
           data:result.result.token
-        })
+        });
+
         if(result.result.registered){
           wx.switchTab({
             url: '../homePage/home/main'
           });
         }else{
           wx.redirectTo({
-            url: '../register/main?id=' + _this.openId
+            url: '../register/main'
           });
         }
       }

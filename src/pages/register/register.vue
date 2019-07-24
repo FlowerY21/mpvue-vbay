@@ -26,7 +26,6 @@ export default {
   name: "register",
   data() {
     return {
-      openId:'',
       invitationCode:'',
       email:'',
       Pwd:'',
@@ -48,7 +47,6 @@ export default {
   },
   mounted(){
     const _this = this;
-    _this.openId = _this.$root.$mp.query.id;
     _this.getPrefixNumbers();
     _this.getRegions();
   },
@@ -96,9 +94,10 @@ export default {
         const password = _this.$base64.encode(_this.$md5(_this.pwd));
         const params = {
           email : _this.email,
+          nickname : wx.getStorageSync('userInfo').nickName,
           invitationCode : _this.invitationCode,
           location : 'AUS0NTDRW',
-          openId : _this.openId,
+          openId : wx.getStorageSync('openId'),
           password  : password,
           phoneNum  : _this.phoneNum,
           prefixNum  : _this.prefixNumbers[0].number,
