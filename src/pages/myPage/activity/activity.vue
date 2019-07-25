@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="list-tab flex-row vertical-center">
-      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
+      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
         {{item.value}}</p>
     </div>
     <div class="activity-list">
@@ -46,47 +46,51 @@ export default {
     return {
       listTabs:[
         {
-          id:0,
+          id:-1,
           value:'全部'
         },
         {
-          id:1,
+          id:0,
           value:'待参与'
         },{
-          id:2,
+          id:1,
           value:'退款'
         },{
-          id:3,
+          id:2,
           value:'完成'
         }
       ],
       tabShow:'',
-      activityList:[{
-        logo:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        goodsImg:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        name:'商家名称',
-        status:1
-      },{
-        logo:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        goodsImg:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        name:'商家名称',
-        status:2
-      },{
-        logo:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        goodsImg:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        name:'商家名称',
-        status:3
-      }],
+      activityList:[],
+      pageNo:'1',
+      pageSize:'10',
+      status:-1
     }
   },
+  mounted(){
+    this.getList();
+  },
   methods:{
-    clickListTap(index){
+    clickListTap(index, id){
       this.tabShow = index;
+      this.status = id;
+      this.getList();
     },
     goPage(){
       wx.navigateTo({
         url: '../../myPage/ticket/main'
       })
+    },
+    async getList(){
+      const params = {
+        pageNo:this.pageNo,
+        pageSize:this.pageSize,
+        status:this.status
+      };
+      const result = await this.$api.myActivityList(params);
+      if (result.code == 200){
+        this.activityList = result.result.records;
+      }
     }
   }
 }

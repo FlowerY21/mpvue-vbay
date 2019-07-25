@@ -62,4 +62,6 @@ export default {
   // ======我的======
   // '获取商户分类列表'
   accountList: params => request('post','/consumer/accountList', true, params),
+  // 我的活动
+  myActivityList: params => request('post','/miniapp/myActivityList', true, params),
 }

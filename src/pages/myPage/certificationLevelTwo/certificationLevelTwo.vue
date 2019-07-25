@@ -75,7 +75,7 @@ export default {
         sourceType: ['album', 'camera'],
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          console.log(res)
+          console.log(res);
           if (index == 1){
             _this.IDPhoto1 = res.tempFilePaths;
             _this.idCardPhotoFront = res.tempFiles[0];
