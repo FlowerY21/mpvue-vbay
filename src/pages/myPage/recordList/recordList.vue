@@ -17,48 +17,48 @@
 
     </div>
     <div class="common-padding">
-      <scroll-view scroll-y="true" @scrolltolower="searchScrollLower">
+      <scroll-view scroll-y="true" @scrolltolower="searchScrollLower" class="scroll-view">
         <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
-          <div class="record-head" :style="'background:url('+item.imgUrl+') center/cover no-repeat'"></div>
+          <div class="record-head" :style="'background:url('+item.expand.consumerHeadPortrait+') center/cover no-repeat'"></div>
           <div class="record-right flex-row vertical-center flow-justify">
             <div class="flex-col">
-              <p class="record-msg common-black-text">预订座位</p>
-              <p class="record-time">2019-5-12 13:36</p>
+              <p class="record-msg common-black-text">{{types[item.type][item.subType]}}</p>
+              <p class="record-time">{{item.accountTime}}</p>
             </div>
             <div class="record-status">
               <div>
-                <p class="big-text">-210AUD</p>
-                <p class="small-text">-500VBC</p>
+                <p class="big-text">{{item.type == 2 ? '-' : ''}}{{item.amount}}AUD</p>
+                <p class="small-text">{{item.type == 2 ? '-' : ''}}{{item.vbcAmount}}VBC</p>
               </div>
             </div>
           </div>
         </div>
+        <no-result :isBottom="isBottom" :listLength="list.length"></no-result>
       </scroll-view>
     </div>
   </div>
 </template>
 
 <script>
+import noResult from '@/components/noResult/noResult'
+import recordType from '@/constant/recordType'
 
 export default {
   name: "recordList",
+  components:{
+    noResult
+  },
   data() {
     return {
-      list: [{
-        imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        status:0
-      },{
-        imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        status:1
-      },{
-        imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-        status:2
-      },],
+      list: [],
       typeList:['全部','进账','支出'],
       chooseDate: this.getDate(),
       typeIndex:0,
       pageNo:'1',
       pageSize:'10',
+      pageTotal:'',
+      isBottom:false,
+      types:recordType,
     }
   },
   mounted(){
@@ -74,16 +74,41 @@ export default {
       };
       const result = await this.$api.accountList(params);
       if (result.code == 200) {
-        this.list = result.result.records;
+        this.pageTotal = result.result.pages;
+        this.list = this.list.concat(result.result.records);
+        console.log('pageNo',this.pageNo)
+        console.log('pageTotal',this.pageTotal)
+        if (this.pageNo == this.pageTotal) {
+          this.isBottom = true;
+        };
+        if (this.pageNo == 1 && result.result.records.length == 0) {
+          this.list = [];
+        }
+        this.list.expand = JSON.stringify(this.list.expand)
+        console.log('list',this.list)
       }
     },
     bindDateChange: function(e) {
       // console.log('picker发送选择改变，携带值为', e.mp.detail.value);
-      this.chooseDate = e.mp.detail.value
+      this.chooseDate = e.mp.detail.value;
+      this.pageNo = 1;
+      this.isBottom = false;
+      this.getList();
     },
     bindPickerChange(e){
       console.log('picker发送选择改变，携带值为', e.mp.detail.value);
       this.typeIndex = e.mp.detail.value
+      this.pageNo = 1;
+      this.isBottom = false;
+      this.getList();
+    },
+    searchScrollLower(e){
+      if (this.pageNo == this.pageTotal) {
+        this.isBottom = true;
+        return;
+      };
+      this.pageNo++;
+      this.getList();
     },
     getDate(){
       var timestamp = Date.parse(new Date());
@@ -96,14 +121,14 @@ export default {
       var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
       return Y + '-' + M;
     },
-    searchScrollLower(e){
-      console.log('scroll',e)
-    },
   }
 }
 </script>
 
 <style scoped>
+  scroll-view{
+    height: calc(100vh - 100rpx);
+  }
   .recordList{
     padding: 20rpx 0;
     border-bottom: 2rpx solid #dddddd;

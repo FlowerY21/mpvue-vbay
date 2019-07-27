@@ -1,31 +1,33 @@
 <template>
   <div>
-    <div class="list-tab flex-row vertical-center">
-      <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
-        {{item.value}}</p>
-    </div>
-    <div class="activity-list">
+    <scroll-view scroll-y="true" @scrolltolower="searchScrollLower">
+      <div class="list-tab flex-row vertical-center">
+        <p v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
+          {{item.value}}</p>
+      </div>
+
+      <div class="activity-list">
       <div class="list-item" v-for="(list,index) in activityList" :key="index" v-if="tabShow == list.status || tabShow == 0">
         <div class="item-top common-padding">
           <div class="flex-row vertical-center flow-justify">
             <div class="flex-row vertical-center">
-              <div class="logo" :style="'background: url('+list.logo+') center/cover no-repeat'"></div>
-              <p class="comment-gray-text">{{list.name}}</p>
+              <div class="logo" :style="'background: url('+list.businessLogo+') center/cover no-repeat'"></div>
+              <p class="comment-gray-text">{{list.businessName}}</p>
             </div>
             <div>
-              <p class="golden-text" v-if="list.status == 1">待参与</p>
-              <p class="golden-text" v-else-if="list.status == 2">退款</p>
-              <p class="golden-text" v-else>完成</p>
+              <p class="golden-text" v-if="list.status == 1">申请退款</p>
+              <p class="golden-text" v-else-if="list.status == 2">已退款</p>
+              <p class="golden-text" v-else>已拒绝</p>
             </div>
           </div>
         </div>
         <div class="item-center flex-row flow-justify">
-          <div class="goods" :style="'background: url('+list.goodsImg+') center/cover no-repeat'"></div>
+          <div class="goods" :style="'background: url('+list.pic+') center/cover no-repeat'"></div>
           <div class="goods-right flex-col around-justify">
-            <p class="goods-title">新品试吃活动</p>
+            <p class="goods-title">{{list.name}}</p>
             <div>
-              <p class="comment-gray-text">05-14 09:00 至 05-16 19:00</p>
-              <p class="overflow common-black-text">47 Willoughby road, Crows...</p>
+              <p class="comment-gray-text">{{list.beginTime}} 至 {{list.endTime}}</p>
+              <p class="overflow common-black-text">{{content}}</p>
             </div>
           </div>
         </div>
@@ -35,13 +37,19 @@
         </div>
       </div>
     </div>
+      <no-result :isBottom="isBottom" :listLength="activityList.length"></no-result>
+    </scroll-view>
+
   </div>
 </template>
 
 <script>
-
+import noResult from '@/components/noResult/noResult'
 export default {
   name: "activity",
+  components:{
+    noResult
+  },
   data() {
     return {
       listTabs:[
@@ -64,7 +72,9 @@ export default {
       activityList:[],
       pageNo:'1',
       pageSize:'10',
-      status:-1
+      pageTotal:'',
+      status:-1,
+      isBottom:false,
     }
   },
   mounted(){
@@ -74,6 +84,8 @@ export default {
     clickListTap(index, id){
       this.tabShow = index;
       this.status = id;
+      this.pageNo = 1;
+      this.isBottom = false;
       this.getList();
     },
     goPage(){
@@ -89,9 +101,27 @@ export default {
       };
       const result = await this.$api.myActivityList(params);
       if (result.code == 200){
-        this.activityList = result.result.records;
+        this.pageTotal = result.result.pages;
+
+        this.activityList = this.activityList.concat(result.result.records);
+
+        if (this.pageNo == this.pageTotal) {
+          this.isBottom = true;
+        };
+
+        if (this.pageNo == 1 && result.result.records.length == 0) {
+          this.activityList = [];
+        }
       }
-    }
+    },
+    searchScrollLower(e){
+      if (this.pageNo == this.pageTotal) {
+        this.isBottom = true;
+        return;
+      };
+      this.pageNo++;
+      this.getList();
+    },
   }
 }
 </script>

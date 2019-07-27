@@ -6,6 +6,7 @@
     "pages/homePage/search/main",
     "pages/vipPage/vip/main",
     "pages/myPage/my/main",
+    "pages/myPage/myInfo/main",
     "pages/myPage/activity/main",
     "pages/myPage/recordList/main",
     "pages/myPage/ticket/main",

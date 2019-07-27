@@ -27,13 +27,18 @@ const request = (method, url, needToken, data = {}, type) => { // method为请�
 }
 
 export default {
+
   // 发送验证码
   sendSMS: params => request('post','/common/sendSMS',false,params),
   // 获取国际冠码
   getPrefixNumbers: () => request('post','/common/getPrefixNumbers',false),
   // 获取行政区列表
   getRegions: params => request('post','/common/getRegions',false,params),
-
+  // 图片下载
+  // downImg: params => request(('get','/common/download',false,params)),
+  // downImg(params){
+  //   return 'https://3.104.54.171:7443/common/download?key=' + params
+  // },
   // 外部登录首次注册
   registerEx: params => request('post','/miniapp/registerEx',true,params),
   // codeSession

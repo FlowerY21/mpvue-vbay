@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="my-top flex-col vertical-center">
-      <div class="my-head" style="background:url(https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640) center/cover no-repeat"></div>
+    <div class="my-top flex-col vertical-center" @tap="goDetail">
+      <div class="my-head" :style="'background:url('+ 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' + ') center/cover no-repeat'"></div>
       <p class="user-name">FlowerY21</p>
-      <p class="user-tip">Address:{{userInfo.location}}l</p>
+      <p class="user-tip">Address:{{userInfo.email}}l</p>
       <p class="data-msg">资料完整度：75%</p>
       <progress class="data-percent" :percent="percent" active stroke-width="4" color="#FF9800"/>
     </div>
@@ -94,6 +94,11 @@
             url: '../../myPage/certification/main'
           })
         }
+      },
+      goDetail(){
+        wx.navigateTo({
+          url: '../myInfo/main'
+        })
       },
       async getUserInfo(){
         const _this = this;

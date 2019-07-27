@@ -117,4 +117,7 @@ export default {
   .silver{
     background: #DDDDDD;
   }
+  scroll-view{
+    height: calc(100vh - 100rpx);
+  }
 </style>
