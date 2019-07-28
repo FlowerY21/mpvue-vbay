@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="my-top flex-col vertical-center" @tap="goDetail">
-      <div class="my-head" :style="'background:url('+ 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640' + ') center/cover no-repeat'"></div>
-      <p class="user-name">FlowerY21</p>
+      <div class="my-head" :style="'background:url('+ userInfo.headPortrait + ') center/cover no-repeat'"></div>
+      <p class="user-name">{{userInfo.nickname}}</p>
       <p class="user-tip">Address:{{userInfo.email}}l</p>
       <p class="data-msg">资料完整度：75%</p>
       <progress class="data-percent" :percent="percent" active stroke-width="4" color="#FF9800"/>
@@ -106,6 +106,15 @@
         console.log('userInfo',result)
         if (result.code == 200) {
           _this.userInfo = result.result;
+
+          if (!_this.userInfo.headPortrait) {
+            _this.userInfo.headPortrait = wx.getStorageSync('userInfo').avatarUrl
+          }
+
+          if (!_this.userInfo.nickname) {
+            _this.userInfo.nickname = wx.getStorageSync('userInfo').nickName
+          }
+
         }
       },
     }
@@ -156,10 +165,6 @@
     width: 50rpx;
     height: 50rpx;
     margin-right: 10rpx;
-  }
-  .right-icon{
-    width: 30rpx;
-    height: 30rpx;
   }
   .item-name{
     font-size: 28rpx;

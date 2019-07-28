@@ -120,4 +120,8 @@ export default {
   scroll-view{
     height: calc(100vh - 100rpx);
   }
+  .right-icon{
+    width: 30rpx;
+    height: 30rpx;
+  }
 </style>

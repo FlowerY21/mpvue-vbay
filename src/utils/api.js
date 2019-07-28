@@ -7,7 +7,7 @@ const getRequest = util.httpsPromisify(wx.request)
 
 export const getToken = () => {
   const res = wx.getStorageSync('token')
-  console.log(res)
+  // console.log(res)
   return res
 }
 
@@ -69,4 +69,11 @@ export default {
   accountList: params => request('post','/consumer/accountList', true, params),
   // 我的活动
   myActivityList: params => request('post','/miniapp/myActivityList', true, params),
+  // 修改昵称
+  changeNickname: params => request('post', '/miniapp/changeNickname', true, params),
+  // 修改昵称
+  changeEmail: params => request('post', '/miniapp/changeEmail', true, params),
+  // 修改地址
+  changeLocation: params => request('post', '/miniapp/changeLocation', true, params),
+
 }
