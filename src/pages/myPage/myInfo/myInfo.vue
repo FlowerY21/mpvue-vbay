@@ -99,6 +99,18 @@ export default {
         if (!_this.userInfo.nickname) {
           _this.userInfo.nickname = wx.getStorageSync('userInfo').nickName
         }
+
+        const localCode = _this.userInfo.location.substr(0,location.length-3);
+        this.getRegions(localCode, res =>{
+          const locationList = res.result;
+          console.log('locationList',locationList)
+          locationList.forEach(item => {
+            if (item.code == localCode) {
+              _this.userInfo.location = item.name;
+              console.log('location',_this.userInfo.location)
+            }
+          })
+        });
       }
     },
     clickItem(type,value){
@@ -195,7 +207,12 @@ export default {
         case 0:   // 第一列更改 就是省级的更改
           var currentProvinceKey = this.regions[e.mp.detail.value].code;
           if (currentProvinceKey != this.defaultCode){  // 判断当前的key是不是真正的更新了
-            this.getRegions(currentProvinceKey)  // 获取当前key下面的市级数据
+            this.getRegions(currentProvinceKey, res =>{
+              this.cityList = res.result;
+
+              this.cityArr = this.cityList.map((item) => { return item.name });
+              this.multiArray = [this.provinceArr,this.cityArr]
+            })  // 获取当前key下面的市级数据
           }
 
           this.multiIndex[1] = 0  // 将市默认选择第一个

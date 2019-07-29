@@ -76,4 +76,10 @@ export default {
   // 修改地址
   changeLocation: params => request('post', '/miniapp/changeLocation', true, params),
 
+
+  // ======会员======
+  // 会员列表
+  myVipList : params => request('post', '/miniapp/myVIPList', true, params)
+
 }
+
