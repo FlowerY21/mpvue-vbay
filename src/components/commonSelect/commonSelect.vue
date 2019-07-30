@@ -6,7 +6,7 @@
         <!--<img src="../../../static/images/down.png" alt="downIcon">-->
       <!--</div>-->
     <!--</picker>-->
-    <picker mode="date" :value="date" :fields="fields" start="1990-09" end="2090-09" @change="bindDateChange">
+    <picker mode="date" :value="date" :fields="fields" start="1990-09" end="2090-09" @change="bindDateChange" v-if="showTime">
       <view class="picker">
         {{date}}
       </view>
@@ -37,6 +37,10 @@ export default {
     fields:{
       type:String,
       default:'month'
+    },
+    showTime:{
+      type:Array,
+      default:true
     }
   },
   data() {
@@ -54,7 +58,8 @@ export default {
       this.index = e.mp.detail.value
     },
     bindPickerChange2(e){
-      this.index2 = e.mp.detail.value
+      this.index2 = e.mp.detail.value;
+      this.$emit('changePicker',this.index2)
     },
     getDate(){
       var timestamp = Date.parse(new Date());

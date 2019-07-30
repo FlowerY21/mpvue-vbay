@@ -4,11 +4,7 @@
       <div class="home-top flex-row vertical-center flow-justify">
         <div class="flex-row vertical-center">
           <img class="address-icon" src="../../../../static/images/position-fill2.png" alt="">
-          <picker :mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
-            <view class="picker">
-              地址
-            </view>
-          </picker>
+          <common-location></common-location>
           <p>16500 <span>VBC</span></p>
         </div>
         <div class="flex-row vertical-center">
@@ -28,6 +24,7 @@
       </div>
 
     </div>
+
     <img-swiper></img-swiper>
     <tab-swiper :tabList="businessTypeList"></tab-swiper>
   </div>
@@ -36,11 +33,12 @@
 <script>
   import imgSwiper from '../../../components/imgSwiper/imgSwiper'
   import tabSwiper from '../../../components/tabSwiper/tabSwiper'
+  import commonLocation from '@/components/commonLocation/commonLocation'
 
   export default {
     name: "home",
     components: {
-      imgSwiper,tabSwiper
+      imgSwiper, tabSwiper, commonLocation
     },
     data() {
       return {
@@ -86,6 +84,7 @@
   .home-top-container p,.picker{
     color: #ffffff;
     font-size: 28rpx;
+    margin-right: 20rpx;
   }
   .home-top-container p span{
     color: #F7D053;
@@ -105,6 +104,7 @@
   .address-icon{
     width: 32rpx;
     height: 32rpx;
+    margin-right: 10rpx;
   }
   .search-input{
     position: relative;

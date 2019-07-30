@@ -1,58 +1,50 @@
 <template>
   <div class="list-container common-padding">
-    <div class="card-container flex-col flow-justify" v-for="(item,index) in cards"
+    <div class="card-container flex-col flow-justify" v-for="(item,index) in cards" @click="handleVipItem(item.businessId)"
          :key="index" :class="{'diamond':item.level==1,'golden':item.level==2,'silver':item.level==3}">
       <div class="flex-row">
-        <div class="header-img" :style="'background:url('+item.head+') center/cover no-repeat'"></div>
+        <div class="header-img" :style="'background:url('+downImg(item.businessLogo)+') center/cover no-repeat'"></div>
         <div class="head-msg  flex-col flow-justify">
-          <p class="head-name">{{item.name}}</p>
+          <p class="head-name">{{item.businessName}}</p>
           <div class="flex-row vertical-center">
             <div class="vip-logo">
               <img v-if="item.level == 3" src="../../../static/images/vip1.png" alt="vipLogo">
               <img v-else-if="item.level !=3" src="../../../static/images/vip0.png" alt="vipLogo">
             </div>
+            <!--<div class="vip-name">-->
+              <!--<p v-if="item.level==1">钻贝会员</p>-->
+              <!--<p v-else-if="item.level==2">金贝会员</p>-->
+              <!--<p v-else="item.level==3">银贝会员</p>-->
+            <!--</div>-->
             <div class="vip-name">
-              <p v-if="item.level==1">钻贝会员</p>
-              <p v-else-if="item.level==2">金贝会员</p>
-              <p v-else="item.level==3">银贝会员</p>
+              <p>{{item.vipTypeName}}</p>
             </div>
           </div>
         </div>
       </div>
-      <p class="vip-notice">累计消费1235AUD | 下一等级还需765AUD</p>
+      <p class="vip-notice">累计消费{{item.consume}}AUD | 下一等级还需{{item.needConsume}}AUD</p>
       <p v-if="item.notice" class="notice-box">{{item.notice}}</p>
     </div>
   </div>
 </template>
 
 <script>
+import {loadMixin} from '@/mixin'
+
 export default {
   name: "vipList",
-  data(){
-    return{
-      cards:[{
-        level:'1',
-        name:'Phuong Restaurant',
-        notice:'5',
-        head:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-      },{
-        level:'2',
-        name:'Phuong Restaurant',
-        notice:'',
-        head:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-      },{
-        level:'3',
-        name:'Phuong Restaurant',
-        notice:'5',
-        head:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-      },{
-        level:'3',
-        name:'Phuong Restaurant',
-        notice:'5',
-        head:'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-      }]
+  props:{
+    cards:{
+      type:Array,
+      default:() => []
     }
   },
+  mixins:[loadMixin],
+  methods:{
+    handleVipItem(id){
+      this.$emit('handleVipItem',id)
+    }
+  }
 }
 </script>
 

@@ -27,7 +27,7 @@
         <!--<p>{{userInfo.location}}</p>-->
         <picker mode="multiSelector" @change="bindMultiPickerChange" @columnchange="bindMultiPickerColumnChange" :value="multiIndex" :range="multiArray">
           <view class="picker">
-            <p>{{userInfo.location}}</p>
+            <p>{{userInfo.location || '请选择'}}</p>
           </view>
         </picker>
         <img src="../../../../static/images/right2.png" alt="icon" class="right-icon">
@@ -63,17 +63,28 @@ export default {
       provinceArr:[],
       cityArr:[],
       defaultCode:'',
-      currentCitykey:''
+      currentCitykey:'',
+      localCode:''
     }
   },
   mixins:[loadMixin],
   mounted(){
     this.getUserInfo();
 
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success (res) {
+    //     const latitude = res.latitude
+    //     const longitude = res.longitude
+    //     const speed = res.speed
+    //     const accuracy = res.accuracy
+    //   }
+    // })
+
     this.getRegions('AUS',res =>{
       this.regions = res.result;
       this.defaultCode = this.regions[0].code;
-      console.log('defaultCode',this.defaultCode)
+
       this.provinceArr = this.regions.map((item) => { return item.name });
       this.multiArray = [this.provinceArr,[]];
 
@@ -81,7 +92,8 @@ export default {
         this.cityList = res.result;
 
         this.cityArr = this.cityList.map((item) => { return item.name });
-        this.multiArray = [this.provinceArr,this.cityArr]
+        this.multiArray = [this.provinceArr,this.cityArr];
+        this.currentCitykey = this.cityList[0].code;
       });
     });
   },
@@ -91,7 +103,6 @@ export default {
       const result = await _this.$api.getUserInfo();
       if (result.code == 200) {
         _this.userInfo = result.result;
-
         if (!_this.userInfo.headPortrait) {
           _this.userInfo.headPortrait = wx.getStorageSync('userInfo').avatarUrl
         }
@@ -99,18 +110,17 @@ export default {
         if (!_this.userInfo.nickname) {
           _this.userInfo.nickname = wx.getStorageSync('userInfo').nickName
         }
-
-        const localCode = _this.userInfo.location.substr(0,location.length-3);
-        this.getRegions(localCode, res =>{
+        _this.localCode = _this.userInfo.location.substr(0,_this.userInfo.location.length-3);
+        
+        _this.getRegions(_this.localCode, res =>{
           const locationList = res.result;
-          console.log('locationList',locationList)
           locationList.forEach(item => {
-            if (item.code == localCode) {
+            if (item.code == _this.userInfo.location) {
               _this.userInfo.location = item.name;
-              console.log('location',_this.userInfo.location)
             }
           })
         });
+
       }
     },
     clickItem(type,value){
@@ -193,7 +203,6 @@ export default {
     },
     bindMultiPickerChange(e){
       this.multiIndex = e.mp.detail.value;
-
       this.changeAddress(this.currentCitykey);
     },
     bindMultiPickerColumnChange(e){
@@ -214,8 +223,10 @@ export default {
               this.multiArray = [this.provinceArr,this.cityArr]
             })  // 获取当前key下面的市级数据
           }
+          this.multiIndex[0] = e.mp.detail.value;
+          this.multiIndex[1] = 0;  // 将市默认选择第一个
+          this.currentCitykey = this.cityList[0].code;
 
-          this.multiIndex[1] = 0  // 将市默认选择第一个
           break;
 
         case 1:  // 市发生变化
@@ -227,8 +238,10 @@ export default {
       const params = {
         location:data
       };
-      const result = this.$api.changeLocation(params);
-      if (result.code == 200) {
+      const result = await this.$api.changeLocation(params);
+      console.log('result',result)
+      if (result.code == '200') {
+        console.log(1)
         wx.showToast({
           title: '修改成功',
           icon: 'success',

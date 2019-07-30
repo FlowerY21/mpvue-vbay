@@ -1,9 +1,10 @@
 <template>
   <div class="home-list">
-    <div class="list-tab flex-row vertical-center" v-if="tabIndex == 2">
-      <p class="common-black-text" v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2)" :class="{'on':tabShow == index2}">
-        {{item.value}}</p>
+    <div class="list-tab flex-row vertical-center" v-if="listTabs.length">
+      <p class="common-black-text" v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
+        {{item.name}}</p>
     </div>
+
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index" @tap="goDetail(info.id)">
       <div v-if="tabIndex == 6">
         <div class="flex-row flow-justify">
@@ -60,85 +61,15 @@ export default {
     tabIndex: {
       type: String,
       default: '0',
+    },
+    listTabs: {
+      type: Array,
+      default:() =>[]
     }
   },
   data() {
     return {
-      listTabs: [
-        {
-          id: 0,
-          value: '全部'
-        }, {
-          id: 1,
-          value: 'Asian'
-        }, {
-          id: 2,
-          value: 'Cafe'
-        }, {
-          id: 3,
-          value: 'Chinese'
-        }, {
-          id: 4,
-          value: 'Casual Dining'
-        },
-      ],
-      details: [
-        {
-          id:1,
-          title: '北悉尼商会',
-          score: 4.6,
-          length: 1.7,
-          address: 'Crows Nest St',
-          type: '泰国菜',
-          country: 'Vietnamese',
-          activityImgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-          imgList: [
-            {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }, {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }, {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }
-          ]
-        }, {
-          id:2,
-          title: '北悉尼商会',
-          score: 4.6,
-          length: 1.7,
-          address: 'Crows Nest St',
-          type: '泰国菜',
-          country: 'Vietnamese',
-          imgList: [],
-          activityImgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-          videoUrl: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
-          videoImg: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'
-        }, {
-          id:3,
-          title: '北悉尼商会',
-          score: 4.6,
-          length: 1.7,
-          address: 'Crows Nest St',
-          type: '泰国菜',
-          country: 'Vietnamese',
-          activityImgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-          imgList: [
-            {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }, {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }, {
-              imgUrl: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-              name: '辣炒海虹'
-            }
-          ]
-        }
-      ],
+      details: [],
       tabShow: '',
     }
   },

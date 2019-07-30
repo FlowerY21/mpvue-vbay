@@ -9,7 +9,7 @@
     </div>
 
     <div class="content-box common-padding">
-      <home-list :tabIndex="showClass"></home-list>
+      <home-list :tabIndex="showClass" :listTabs="listTabs"></home-list>
     </div>
 
   </div>
@@ -32,32 +32,19 @@ export default {
   },
   data() {
     return {
-      // tabList: [
-      //   {
-      //     label: '推荐'
-      //   }, {
-      //     label: '玩乐'
-      //   }, {
-      //     label: '美食'
-      //   }, {
-      //     label: '购物'
-      //   }, {
-      //     label: '服务'
-      //   }, {
-      //     label: '组织'
-      //   }, {
-      //     label: '活动'
-      //   }
-      // ],
       contentList: [{},{}],
       autoplay: false,
-      multipleItem: this.tabList.length,
+      multipleItem: 4,
       showClass:'',
+      listTabs:[]
     }
   },
   methods: {
     tabChange(index) {
       this.showClass = index;
+      if(this.tabList[index].type == 'ExhibitionType'){
+        this.listTabs = this.tabList[index].subTypes
+      }
     }
   }
 }
@@ -69,6 +56,9 @@ export default {
     height: 80rpx;
     background: #ffffff;
     overflow: hidden;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    box-sizing: border-box;
   }
 
   .tab-container p {
