@@ -1,10 +1,5 @@
 <template>
   <div class="home-list">
-    <div class="list-tab flex-row vertical-center" v-if="listTabs.length">
-      <p class="common-black-text" v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
-        {{item.name}}</p>
-    </div>
-
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index" @tap="goDetail(info.id)">
       <div v-if="tabIndex == 6">
         <div class="flex-row flow-justify">
@@ -51,6 +46,7 @@
         </div>
       </div>
     </div>
+    <!--<no-result :isBottom="isBottom" :listLength="activityList.length"></no-result>-->
   </div>
 </template>
 
@@ -141,14 +137,6 @@ export default {
     height: 260rpx;
     border-radius: 10rpx;
     margin-top: 10rpx;
-  }
-
-  .list-tab p {
-    margin-right: 28rpx;
-  }
-
-  .list-tab .on {
-    color: #31B9A5;
   }
 
   .activity-price {

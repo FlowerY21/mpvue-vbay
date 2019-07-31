@@ -11,18 +11,18 @@
         <div class="item-top common-padding">
           <div class="flex-row vertical-center flow-justify">
             <div class="flex-row vertical-center">
-              <div class="logo" :style="'background: url('+list.businessLogo+') center/cover no-repeat'"></div>
+              <div class="logo" :style="'background: url('+ downImg(list.businessLogo) +') center/cover no-repeat'"></div>
               <p class="comment-gray-text">{{list.businessName}}</p>
             </div>
             <div>
               <p class="golden-text" v-if="list.status == 1">申请退款</p>
               <p class="golden-text" v-else-if="list.status == 2">已退款</p>
-              <p class="golden-text" v-else>已拒绝</p>
+              <p class="golden-text" v-else-if="list.status == 3">已拒绝</p>
             </div>
           </div>
         </div>
         <div class="item-center flex-row flow-justify">
-          <div class="goods" :style="'background: url('+list.pic+') center/cover no-repeat'"></div>
+          <div class="goods" :style="'background: url('+ downImg(list.pic)+') center/cover no-repeat'"></div>
           <div class="goods-right flex-col around-justify">
             <p class="goods-title">{{list.name}}</p>
             <div>
@@ -33,7 +33,7 @@
         </div>
         <div class="item-bottom common-padding flex-row vertical-center">
           <p class="comment-gray-text">取消报名</p>
-          <button class="button-class common-black-text" type="default" @tap="goPage()" >查看电子票</button>
+          <button class="button-class common-black-text" type="default" @tap="goPage(list)" >查看电子票</button>
         </div>
       </div>
     </div>
@@ -45,11 +45,14 @@
 
 <script>
 import noResult from '@/components/noResult/noResult'
+import {loadMixin} from '@/mixin'
+
 export default {
   name: "activity",
   components:{
     noResult
   },
+  mixins:[loadMixin],
   data() {
     return {
       listTabs:[
@@ -88,7 +91,11 @@ export default {
       this.isBottom = false;
       this.getList();
     },
-    goPage(){
+    goPage(item){
+      wx.setStorage({
+        key:"activity",
+        data:item
+      });
       wx.navigateTo({
         url: '../../myPage/ticket/main'
       })

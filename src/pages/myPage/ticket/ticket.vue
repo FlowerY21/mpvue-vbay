@@ -2,26 +2,28 @@
   <div class="common-padding">
     <div class="ticket-box">
       <div class="ticket-top">
-        <p class="ticket-text">金贝会员 $99+1000VBC</p>
-        <p class="ticket-text">于帅文（18677778888）</p>
+        <p class="ticket-text">{{activityInfo.vipName}} ${{activityInfo.payAmount}}+{{activityInfo.payVbc}}VBC</p>
+        <p class="ticket-text">{{activityInfo.consumerNickname}}（{{activityInfo.consumerPhoneNum}}）</p>
       </div>
       <div class="ticket-center flex-col vertical-center">
-        <p class="ticket-center-text">2784 5735 9011</p>
-        <p class="ticket-status">待参与</p>
+        <p class="ticket-center-text">{{activityInfo.code}}</p>
+        <p class="ticket-status" v-if="activityInfo.status == 1">申请退款</p>
+        <p class="ticket-status" v-else-if="activityInfo.status == 2">已退款</p>
+        <p class="ticket-status" v-else-if="activityInfo.status == 3">已拒绝</p>
       </div>
       <div class="ticket-bottom flex-col">
         <div class="flex-row vertical-center flow-justify">
-          <p class="common-black-text">新品试吃活动</p>
+          <p class="common-black-text">{{activityInfo.name}}</p>
           <img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">
         </div>
 
         <div class="flex-row vertical-center flow-justify">
-          <p class="common-black-text">时间：05-14 09:00 至 05-16 19:00</p>
+          <p class="common-black-text">时间：{{activityInfo.beginTime}} 至 {{activityInfo.endTime}}</p>
           <!--<img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">-->
         </div>
 
         <div class="flex-row vertical-center flow-justify">
-          <p class="common-black-text overflow">地址：47 Willoughby road, Crows Nest......</p>
+          <p class="common-black-text overflow">地址：{{activityInfo.address}}</p>
           <img src="../../../../static/images/right2.png" alt="rightIcon" class="right-icon">
         </div>
       </div>
@@ -31,7 +33,15 @@
 
 <script>
 export default {
-  name: "ticket"
+  name: "ticket",
+  data(){
+    return{
+      activityInfo:{},
+    }
+  },
+  mounted(){
+    this.activityInfo = wx.getStorageSync('activity');
+  },
 }
 </script>
 

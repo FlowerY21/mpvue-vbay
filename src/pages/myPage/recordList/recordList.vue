@@ -19,7 +19,7 @@
     <div class="common-padding">
       <scroll-view scroll-y="true" @scrolltolower="searchScrollLower" class="scroll-view">
         <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
-          <div class="record-head" :style="'background:url('+item.expand.consumerHeadPortrait+') center/cover no-repeat'"></div>
+          <div class="record-head" :style="'background:url('+downImg(item.expand.consumerHeadPortrait)+') center/cover no-repeat'"></div>
           <div class="record-right flex-row vertical-center flow-justify">
             <div class="flex-col">
               <p class="record-msg common-black-text">{{types[item.type][item.subType]}}</p>
@@ -42,12 +42,14 @@
 <script>
 import noResult from '@/components/noResult/noResult'
 import recordType from '@/constant/recordType'
+import {loadMixin} from '@/mixin'
 
 export default {
   name: "recordList",
   components:{
     noResult
   },
+  mixins:[loadMixin],
   data() {
     return {
       list: [],

@@ -105,13 +105,15 @@ export default {
         _this.userInfo = result.result;
         if (!_this.userInfo.headPortrait) {
           _this.userInfo.headPortrait = wx.getStorageSync('userInfo').avatarUrl
+        } else {
+          _this.userInfo.headPortrait = _this.downImg(_this.userInfo.headPortrait);
         }
 
         if (!_this.userInfo.nickname) {
           _this.userInfo.nickname = wx.getStorageSync('userInfo').nickName
         }
         _this.localCode = _this.userInfo.location.substr(0,_this.userInfo.location.length-3);
-        
+
         _this.getRegions(_this.localCode, res =>{
           const locationList = res.result;
           locationList.forEach(item => {

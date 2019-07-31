@@ -1,15 +1,19 @@
 <template>
   <div>
-    <div class="top-container flex-row vertical-center common-padding">
-      <div class="search-container flex-row vertical-center ">
+    <div class="top-container flex-row vertical-center flow-justify common-padding">
+      <div class="search-container flex-row vertical-center">
         <icon type="search" size="20" class="icon-search" />
         <input type="search" :value="value" placeholder-class="gray">
       </div>
+      <p @tap="handleSearch">搜索</p>
     </div>
-    <div class="common-padding">
+    <div v-if="businessList.length">
+
+    </div>
+    <div class="common-padding" v-else>
       <p class="search-title">热门搜索</p>
       <div class="tab-container">
-        <span class="common-black-text" v-for="(word , index) in words" :key="index">{{word}}</span>
+        <span class="common-black-text" v-for="(word , index) in words" :key="index" @tap="handleHotWord(word)">{{word}}</span>
       </div>
     </div>
   </div>
@@ -24,11 +28,39 @@ export default {
   data(){
     return{
       value:'',
-      words:['海鲜','赵小花','啦啦啦啦啦绿绿','吃肉啊',]
+      words:[],
+      businessList:[],
     }
   },
+  mounted(){
+    this.getHotSearch();
+  },
   methods:{
+    async getHotSearch() {
+      const result = await this.$api.getHotSearch();
+      if (result.code == '200') {
+        this.words = result.result
+      }
+    },
+    async handleSearch(){
+      const params = {
+        keyword : this.value,
+        latitude : '',
+        location : '',
+        longitude : '',
+        pageNo : '',
+        pageSize : '',
+        sort : '',
+        typeId : '',
+      }
+      const result = await this.$api.search();
+      if (result.code == '200') {
 
+      }
+    },
+    handleHotWord(word){
+      this.value = word
+    }
   }
 }
 </script>

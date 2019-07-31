@@ -4,8 +4,8 @@
       <div class="home-top flex-row vertical-center flow-justify">
         <div class="flex-row vertical-center">
           <img class="address-icon" src="../../../../static/images/position-fill2.png" alt="">
-          <common-location></common-location>
-          <p>16500 <span>VBC</span></p>
+          <common-location @default="defaultLocation"></common-location>
+          <p>{{vbc}} <span>VBC</span></p>
         </div>
         <div class="flex-row vertical-center">
           <div class="flex-row vertical-center">
@@ -18,15 +18,13 @@
           </div>
         </div>
       </div>
-      <div class="search-input flex-row vertical-center">
+      <div class="search-input flex-row vertical-center" @tap="handleSearch">
         <icon type="search" size="20" class="icon-search" color="#ffffff" />
         <input type="text" placeholder="搜索商家或商品" placeholder-style="color:#7ED6CB;">
       </div>
-
     </div>
-
     <img-swiper></img-swiper>
-    <tab-swiper :tabList="businessTypeList"></tab-swiper>
+    <tab-swiper ref="tabSwiper" :tabList="businessTypeList"></tab-swiper>
   </div>
 </template>
 
@@ -42,31 +40,50 @@
     },
     data() {
       return {
-        index: 0,
-        multiArray: [['无脊柱动物', '脊柱动物'], ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'], ['猪肉绦虫', '吸血虫']],
         businessTypeList:[],
+        latitude:'',
+        longitude:'',
+        vbc:'',
       }
     },
     mounted(){
       this.getBusinessTypeList();
+      this.getVBC();
+      wx.getLocation({
+        type: 'wgs84',
+        success (res) {
+          wx.setStorage({
+            key:"location",
+            data:res
+          });
+        }
+      });
     },
     methods:{
-      bindMultiPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.mp.detail.value)
-        this.setData({
-          multiIndex: e.mp.detail.value
-        })
-      },
-      bindMultiPickerColumnChange: function (e) {
-        console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+      defaultLocation(code){
+        wx.setStorage({
+          key:"locationCode",
+          data:code
+        });
+        console.log(this.$refs.tabSwiper)
       },
       async getBusinessTypeList(){
         const result = await this.$api.businessTypeList();
         if(result.code == 200){
           this.businessTypeList = result.result;
         }
-
-      }
+      },
+      async getVBC(){
+        const result = await this.$api.getVBC();
+        if(result.code == 200){
+          this.vbc = result.result;
+        }
+      },
+      handleSearch(){
+        wx.navigateTo({
+          url: '../search/main'
+        })
+      },
     }
   }
 </script>

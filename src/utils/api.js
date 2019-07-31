@@ -34,11 +34,6 @@ export default {
   getPrefixNumbers: () => request('post','/common/getPrefixNumbers',false),
   // 获取行政区列表
   getRegions: params => request('post','/common/getRegions',false,params),
-  // 图片下载
-  // downImg: params => request(('get','/common/download',false,params)),
-  // downImg(params){
-  //   return 'https://3.104.54.171:7443/common/download?key=' + params
-  // },
   // 外部登录首次注册
   registerEx: params => request('post','/miniapp/registerEx',true,params),
   // codeSession
@@ -57,11 +52,15 @@ export default {
   // 二级认证
   authenticateV2: params => request('post','/miniapp/authenticateV2',true,params, true),
 
-
-  // 获取商家会员信息
-  getVIPTypes: params => request('post','/miniapp/business/vip/getVIPTypes',true,params),
+  //  ======首页======
   // '获取商户分类列表'
   businessTypeList: () => request('post','/consumer/business/businessTypeList'),
+  // 首页商户列表
+  businessList: params => request('post', '/miniapp/business/businessList', true, params ),
+  // 首页搜索
+  getHotSearch: () => request('post', '/miniapp/business/getHotSearch', true ),
+  // 搜索商户
+  search: params => request('post', '/miniapp/business/search', false, params ),
 
 
   // ======我的======
@@ -71,7 +70,7 @@ export default {
   myActivityList: params => request('post','/miniapp/myActivityList', true, params),
   // 修改昵称
   changeNickname: params => request('post', '/miniapp/changeNickname', true, params),
-  // 修改昵称
+  // 修改邮箱
   changeEmail: params => request('post', '/miniapp/changeEmail', true, params),
   // 修改地址
   changeLocation: params => request('post', '/miniapp/changeLocation', true, params),

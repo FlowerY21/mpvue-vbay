@@ -40,6 +40,7 @@ export default {
         this.cityArr = this.cityList.map((item) => { return item.name });
         this.multiArray = [this.provinceArr,this.cityArr];
         this.currentCitykey = this.cityList[0].code;
+        this.$emit('default',this.currentCitykey)
       });
     });
   },

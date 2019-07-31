@@ -9,7 +9,14 @@
     </div>
 
     <div class="content-box common-padding">
-      <home-list :tabIndex="showClass" :listTabs="listTabs"></home-list>
+      <div class="list-tab flex-row vertical-center" v-if="listTabs.length">
+        <p class="common-black-text" v-for="(item,index2) in listTabs" :key="index2" @tap="clickListTap(index2,item.id)" :class="{'on':tabShow == index2}">
+          {{item.name}}</p>
+      </div>
+
+      <scroll-view scroll-y="true" @scrolltolower="searchScrollLower">
+        <home-list :tabIndex="showClass" :listTabs="listTabs"></home-list>
+      </scroll-view>
     </div>
 
   </div>
@@ -36,7 +43,30 @@ export default {
       autoplay: false,
       multipleItem: 4,
       showClass:'',
-      listTabs:[]
+      tabShow:'',
+      listTabs:[],
+
+      pageNo:'1',
+      pageSize:'10',
+      pageTotal:'',
+      status:-1,
+      isBottom:false,
+      type:'',
+      typeId:'',
+      typeSubId:'',
+    }
+  },
+  watch:{
+    tabList(val){
+      if (val.length) {
+        this.type = val[0].type;
+        if (this.type == 'ExhibitionType') {
+          this.typeId = val[0].id;
+          this.typeSubId = val[0].subTypes[0].id;
+        }
+        console.log(val[0].type)
+        this.getbusinessList();
+      }
     }
   },
   methods: {
@@ -45,7 +75,36 @@ export default {
       if(this.tabList[index].type == 'ExhibitionType'){
         this.listTabs = this.tabList[index].subTypes
       }
-    }
+    },
+    clickListTap(index) {
+      this.tabShow = index;
+    },
+    async getbusinessList(){
+      const params = {
+        latitude :  wx.getStorageSync('location').latitude,
+        location : wx.getStorageSync('locationCode'),
+        longitude : wx.getStorageSync('location').longitude,
+        pageNo : this.pageNo,
+        pageSize : this.pageSize,
+        type : this.type,
+      };
+      if (this.typeId) {
+        params.typeId = this.typeId;
+        params.typeSubId = this.typeSubId;
+      }
+      const result = await this.$api.businessList(params);
+      if(result.code == 200){
+        this.businessTypeList = result.result;
+      }
+    },
+    searchScrollLower(e){
+      if (this.pageNo == this.pageTotal) {
+        this.isBottom = true;
+        return;
+      };
+      this.pageNo++;
+      this.getbusinessList();
+    },
   }
 }
 </script>
@@ -88,4 +147,12 @@ export default {
     -moz-border-radius: 10rpx;
     border-radius: 10rpx;
   }
+  .list-tab p {
+    margin-right: 28rpx;
+  }
+
+  .list-tab .on {
+    color: #31B9A5;
+  }
+
 </style>
