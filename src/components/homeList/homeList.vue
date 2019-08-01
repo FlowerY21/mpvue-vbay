@@ -1,7 +1,7 @@
 <template>
   <div class="home-list">
     <div class="list-container common-padding" v-for="(info,index) in details" :key="index" @tap="goDetail(info.id)">
-      <div v-if="tabIndex == 6">
+      <div>
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.title}}</h3>
           <div class="flex-row vertical-center">
@@ -21,7 +21,7 @@
         </div>
         <div class="activity-img-box" :style="'background: url('+info.activityImgUrl+') center/cover no-repeat'"></div>
       </div>
-      <div v-else>
+      <div>
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.title}}</h3>
           <div class="flex-row vertical-center">
@@ -40,13 +40,13 @@
             <p class="list-img-name">{{item.name}}</p>
           </div>
         </div>
-        <div v-else>
+        <div>
           <video class="video-size" object-fit="cover" play-btn-position="center" controls="true"
                  :poster="info.videoImg" :src="info.videoUrl"></video>
         </div>
       </div>
     </div>
-    <!--<no-result :isBottom="isBottom" :listLength="activityList.length"></no-result>-->
+    <no-result :isBottom="isBottom" :listLength="details.length"></no-result>
   </div>
 </template>
 
@@ -54,35 +54,31 @@
 export default {
   name: "homeList",
   props: {
-    tabIndex: {
-      type: String,
-      default: '0',
-    },
-    listTabs: {
+    details: {
       type: Array,
       default:() =>[]
+    },
+    isBottom: {
+      type: Boolean,
+      default:true
     }
   },
   data() {
     return {
-      details: [],
-      tabShow: '',
+
     }
   },
   methods: {
-    clickListTap(index) {
-      this.tabShow = index;
-    },
     goDetail(id){
-      if(this.tabIndex == 6){
-        wx.navigateTo({
-          url: '../../businessPage/activityDetail/main?id='+id
-        })
-      }else{
-        wx.navigateTo({
-          url: '../../businessPage/business/main?id='+id
-        })
-      }
+      // if(this.tabIndex == 6){
+      //   wx.navigateTo({
+      //     url: '../../businessPage/activityDetail/main?id='+id
+      //   })
+      // }else{
+      //   wx.navigateTo({
+      //     url: '../../businessPage/business/main?id='+id
+      //   })
+      // }
 
     }
   }

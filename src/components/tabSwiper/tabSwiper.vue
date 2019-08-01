@@ -15,7 +15,7 @@
       </div>
 
       <scroll-view scroll-y="true" @scrolltolower="searchScrollLower">
-        <home-list :tabIndex="showClass" :listTabs="listTabs"></home-list>
+        <home-list :details="homeBusiness" :isBottom="isBottom"></home-list>
       </scroll-view>
     </div>
 
@@ -45,7 +45,6 @@ export default {
       showClass:'',
       tabShow:'',
       listTabs:[],
-
       pageNo:'1',
       pageSize:'10',
       pageTotal:'',
@@ -54,6 +53,7 @@ export default {
       type:'',
       typeId:'',
       typeSubId:'',
+      homeBusiness:[],
     }
   },
   watch:{
@@ -64,25 +64,36 @@ export default {
           this.typeId = val[0].id;
           this.typeSubId = val[0].subTypes[0].id;
         }
-        console.log(val[0].type)
         this.getbusinessList();
       }
+    }
+  },
+  computed:{
+    locationCode(){
+      return wx.getStorageSync('locationCode')
     }
   },
   methods: {
     tabChange(index) {
       this.showClass = index;
       if(this.tabList[index].type == 'ExhibitionType'){
-        this.listTabs = this.tabList[index].subTypes
+        this.listTabs = this.tabList[index].subTypes;
+        this.typeId = this.tabList[index].id;
+        this.typeSubId = this.listTabs[0].id;
       }
+      this.type = this.tabList[index].type;
+      this.getbusinessList();
     },
     clickListTap(index) {
       this.tabShow = index;
+      this.typeSubId = this.listTabs[index].id;
+      this.getbusinessList();
+
     },
     async getbusinessList(){
       const params = {
         latitude :  wx.getStorageSync('location').latitude,
-        location : wx.getStorageSync('locationCode'),
+        location : this.locationCode,
         longitude : wx.getStorageSync('location').longitude,
         pageNo : this.pageNo,
         pageSize : this.pageSize,
@@ -94,7 +105,7 @@ export default {
       }
       const result = await this.$api.businessList(params);
       if(result.code == 200){
-        this.businessTypeList = result.result;
+        this.homeBusiness = result.result.records;
       }
     },
     searchScrollLower(e){

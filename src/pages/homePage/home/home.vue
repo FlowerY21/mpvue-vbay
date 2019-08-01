@@ -44,6 +44,7 @@
         latitude:'',
         longitude:'',
         vbc:'',
+        locationCode:'',
       }
     },
     mounted(){
@@ -65,7 +66,7 @@
           key:"locationCode",
           data:code
         });
-        console.log(this.$refs.tabSwiper)
+        this.locationCode = code;
       },
       async getBusinessTypeList(){
         const result = await this.$api.businessTypeList();
@@ -84,6 +85,11 @@
           url: '../search/main'
         })
       },
+    },
+    watch:{
+      locationCode(val){
+        this.$refs.tabSwiper.getbusinessList();
+      }
     }
   }
 </script>

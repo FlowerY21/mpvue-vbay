@@ -47,7 +47,7 @@ export default {
   methods:{
     bindMultiPickerChange(e){
       this.multiIndex = e.mp.detail.value;
-      console.log(this.multiIndex)
+      this.$emit('default',this.currentCitykey)
     },
     bindMultiPickerColumnChange(e){
       var column = e.mp.detail.column  // 当前改变的列
