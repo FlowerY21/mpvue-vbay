@@ -98,7 +98,7 @@ export default {
       this.getList();
     },
     bindPickerChange(e){
-      console.log('picker发送选择改变，携带值为', e.mp.detail.value);
+      // console.log('picker发送选择改变，携带值为', e.mp.detail.value);
       this.typeIndex = e.mp.detail.value
       this.pageNo = 1;
       this.isBottom = false;

@@ -52,13 +52,12 @@ export default {
   },
   methods: {
     bindMultiPickerChange(e){
-      console.log('picker发送选择改变，携带值为', e.mp.detail.value)
       this.setData({
         multiIndex: e.detail.value
       })
     },
     bindMultiPickerColumnChange(){
-      console.log('修改的列为', e.detail.column, '，值为', e.mp.detail.value);
+      // console.log('修改的列为', e.detail.column, '，值为', e.mp.detail.value);
     },
     doSubmit() {
       const _this = this;

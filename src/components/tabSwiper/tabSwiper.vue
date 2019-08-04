@@ -35,6 +35,10 @@ export default {
     tabList:{
       type:Array,
       default:()=>[]
+    },
+    locationCode:{
+      type:String,
+      default:''
     }
   },
   data() {
@@ -66,11 +70,10 @@ export default {
         }
         this.getbusinessList();
       }
-    }
-  },
-  computed:{
-    locationCode(){
-      return wx.getStorageSync('locationCode')
+    },
+    locationCode(val){
+      this.locationCode = val;
+      this.getbusinessList();
     }
   },
   methods: {
@@ -88,7 +91,6 @@ export default {
       this.tabShow = index;
       this.typeSubId = this.listTabs[index].id;
       this.getbusinessList();
-
     },
     async getbusinessList(){
       const params = {
@@ -105,7 +107,7 @@ export default {
       }
       const result = await this.$api.businessList(params);
       if(result.code == 200){
-        this.homeBusiness = result.result.records;
+        this.homeBusiness = this.homeBusiness.concat(result.result.records);
       }
     },
     searchScrollLower(e){

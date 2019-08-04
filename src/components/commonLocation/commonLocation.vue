@@ -40,14 +40,22 @@ export default {
         this.cityArr = this.cityList.map((item) => { return item.name });
         this.multiArray = [this.provinceArr,this.cityArr];
         this.currentCitykey = this.cityList[0].code;
-        this.$emit('default',this.currentCitykey)
+        // this.$emit('default',this.currentCitykey)
+        wx.setStorage({
+          key:"locationCode",
+          data:this.currentCitykey
+        });
       });
     });
   },
   methods:{
     bindMultiPickerChange(e){
       this.multiIndex = e.mp.detail.value;
-      this.$emit('default',this.currentCitykey)
+      wx.setStorage({
+        key:"locationCode",
+        data:this.currentCitykey
+      });
+      this.$emit('change',this.currentCitykey)
     },
     bindMultiPickerColumnChange(e){
       var column = e.mp.detail.column  // 当前改变的列
@@ -65,16 +73,18 @@ export default {
 
               this.cityArr = this.cityList.map((item) => { return item.name });
               this.multiArray = [this.provinceArr,this.cityArr]
+
+              this.multiIndex[0] = e.mp.detail.value;
+              this.multiIndex[1] = 0;  // 将市默认选择第一个
+              this.currentCitykey = this.cityList[0].code;
             })  // 获取当前key下面的市级数据
           }
-          this.multiIndex[0] = e.mp.detail.value;
-          this.multiIndex[1] = 0;  // 将市默认选择第一个
-          this.currentCitykey = this.cityList[0].code;
 
           break;
 
         case 1:  // 市发生变化
           this.currentCitykey = this.cityList[e.mp.detail.value].code;
+          this.multiIndex[1] = e.mp.detail.value;
           break;
       }
     },

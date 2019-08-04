@@ -64,7 +64,6 @@ export default {
   methods:{
     bindPickerChange(e){
       const _this = this;
-      console.log('picker发送选择改变，携带值为', e.mp.detail.value)
       this.time = e.mp.detail.value
     },
     upLoadImage(index){
@@ -75,7 +74,6 @@ export default {
         sourceType: ['album', 'camera'],
         success (res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          console.log(res);
           if (index == 1){
             _this.IDPhoto1 = res.tempFilePaths;
             _this.idCardPhotoFront = res.tempFiles[0];
@@ -98,7 +96,6 @@ export default {
         idCardPhotoInHand : _this.idCardPhotoInHand
       };
       const result = await _this.$api.authenticateV2(params)
-      console.log('v2',result)
       if (result.code == 200) {
         wx.showToast({
           title: '提交成功',

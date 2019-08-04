@@ -4,7 +4,7 @@
       <div class="home-top flex-row vertical-center flow-justify">
         <div class="flex-row vertical-center">
           <img class="address-icon" src="../../../../static/images/position-fill2.png" alt="">
-          <common-location @default="defaultLocation"></common-location>
+          <common-location @change="changeLocation"></common-location>
           <p>{{vbc}} <span>VBC</span></p>
         </div>
         <div class="flex-row vertical-center">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <img-swiper></img-swiper>
-    <tab-swiper ref="tabSwiper" :tabList="businessTypeList"></tab-swiper>
+    <tab-swiper ref="tabSwiper" :tabList="businessTypeList" :locationCode="locationCode"></tab-swiper>
   </div>
 </template>
 
@@ -48,8 +48,8 @@
       }
     },
     mounted(){
-      this.getBusinessTypeList();
-      this.getVBC();
+      const _this = this;
+      _this.getVBC();
       wx.getLocation({
         type: 'wgs84',
         success (res) {
@@ -57,16 +57,15 @@
             key:"location",
             data:res
           });
+
+          _this.getBusinessTypeList();
         }
       });
     },
     methods:{
-      defaultLocation(code){
-        wx.setStorage({
-          key:"locationCode",
-          data:code
-        });
+      changeLocation(code){
         this.locationCode = code;
+        console.log('this',this.locationCode)
       },
       async getBusinessTypeList(){
         const result = await this.$api.businessTypeList();
@@ -86,11 +85,6 @@
         })
       },
     },
-    watch:{
-      locationCode(val){
-        this.$refs.tabSwiper.getbusinessList();
-      }
-    }
   }
 </script>
 
