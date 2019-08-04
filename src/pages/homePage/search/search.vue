@@ -8,6 +8,29 @@
       <p @tap="handleSearch">搜索</p>
     </div>
     <div v-if="businessList.length">
+      <div class="picker-wraper common-padding flex-row vertical-center">
+        <picker mode="date" :value="chooseDate" fields="month" start="1990-09" end="2090-09" @change="bindDateChange">
+          <div class="flex-row down-tap vertical-center">
+            <p>{{chooseDate}}</p>
+            <img src="../../../../static/images/down.png" alt="downIcon">
+          </div>
+        </picker>
+
+        <picker mode="selector" @change="bindPickerChange" :value="typeIndex" :range="typeList">
+          <div class="flex-row down-tap vertical-center">
+            <p>{{typeList[typeIndex]}}</p>
+            <img src="../../../../static/images/down.png" alt="downIcon">
+          </div>
+        </picker>
+      </div>
+      <div class="common-padding">
+        <scroll-view scroll-y="true" @scrolltolower="searchScrollLower" class="scroll-view">
+          <div class="recordList flex-row vertical-center flow-justify" v-for="(item,index) in list" :key="index">
+
+          </div>
+          <no-result :isBottom="isBottom" :listLength="list.length"></no-result>
+        </scroll-view>
+      </div>
 
     </div>
     <div class="common-padding" v-else>
@@ -30,6 +53,10 @@ export default {
       value:'',
       words:[],
       businessList:[],
+      searchShow:true,
+      pageNo:'1',
+      pageSize:'10',
+      pageTotal:'',
     }
   },
   mounted(){
@@ -45,22 +72,44 @@ export default {
     async handleSearch(){
       const params = {
         keyword : this.value,
-        latitude : '',
-        location : '',
-        longitude : '',
-        pageNo : '',
-        pageSize : '',
+        latitude : wx.getStorageSync('location').latitude,
+        location : wx.getStorageSync('locationCode'),
+        longitude : wx.getStorageSync('location').longitude,
+        pageNo : this.pageNo,
+        pageSize : this.pageSize,
         sort : '',
         typeId : '',
-      }
+      };
       const result = await this.$api.search();
       if (result.code == '200') {
 
       }
     },
+    bindDateChange: function(e) {
+      // console.log('picker发送选择改变，携带值为', e.mp.detail.value);
+      this.chooseDate = e.mp.detail.value;
+      this.pageNo = 1;
+      this.isBottom = false;
+      this.getList();
+    },
+    bindPickerChange(e){
+      console.log('picker发送选择改变，携带值为', e.mp.detail.value);
+      this.typeIndex = e.mp.detail.value
+      this.pageNo = 1;
+      this.isBottom = false;
+      this.getList();
+    },
     handleHotWord(word){
       this.value = word
-    }
+    },
+    searchScrollLower(e){
+      if (this.pageNo == this.pageTotal) {
+        this.isBottom = true;
+        return;
+      };
+      this.pageNo++;
+      this.handleSearch();
+    },
   }
 }
 </script>
