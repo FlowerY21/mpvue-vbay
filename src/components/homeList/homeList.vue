@@ -1,7 +1,7 @@
 <template>
   <div class="home-list">
-    <div class="list-container common-padding" v-for="(info,index) in list" :key="index" @tap="goDetail(info.id)">
-      <div v-if="info.activity">
+    <div class="list-container common-padding" v-for="(info,index) in list" :key="index">
+      <div v-if="info.activity"  @tap="goDetail(1,info.activity.id)">
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.activity.name}}</h3>
           <div class="flex-row vertical-center">
@@ -22,7 +22,7 @@
         <div class="activity-img-box" :style="'background: url('+info.activity.pic+') center/cover no-repeat'"></div>
       </div>
 
-      <div v-else-if="info.business">
+      <div v-else-if="info.business"  @tap="goDetail(2,info.business.id)">
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.business.name}}</h3>
           <div class="flex-row vertical-center">
@@ -83,16 +83,16 @@ export default {
     }
   },
   methods: {
-    goDetail(id){
-      // if(this.tabIndex == 6){
-      //   wx.navigateTo({
-      //     url: '../../businessPage/activityDetail/main?id='+id
-      //   })
-      // }else{
-      //   wx.navigateTo({
-      //     url: '../../businessPage/business/main?id='+id
-      //   })
-      // }
+    goDetail(type,id){
+      if(type == 1){
+        wx.navigateTo({
+          url: '../../businessPage/activityDetail/main?id='+id
+        })
+      }else{
+        wx.navigateTo({
+          url: '../../businessPage/business/main?id='+id
+        })
+      }
 
     }
   }

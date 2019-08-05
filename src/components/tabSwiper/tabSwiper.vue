@@ -83,13 +83,19 @@ export default {
         this.listTabs = this.tabList[index].subTypes;
         this.typeId = this.tabList[index].id;
         this.typeSubId = this.listTabs[0].id;
+      } else {
+        this.listTabs = [];
+        this.typeId = '';
+        this.typeSubId = '';
       }
       this.type = this.tabList[index].type;
+      this.homeBusiness = [];
       this.getbusinessList();
     },
     clickListTap(index) {
       this.tabShow = index;
       this.typeSubId = this.listTabs[index].id;
+      this.homeBusiness = [];
       this.getbusinessList();
     },
     async getbusinessList(){

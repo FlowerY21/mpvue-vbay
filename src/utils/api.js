@@ -60,7 +60,9 @@ export default {
   // 首页搜索
   getHotSearch: () => request('post', '/miniapp/business/getHotSearch', true ),
   // 搜索商户
-  search: params => request('post', '/miniapp/business/search', false, params ),
+  search: params => request('post', '/miniapp/business/search', true, params ),
+  // 精选列表
+  garefullyChosenList: params => request('post', '/miniapp/business/garefullyChosenList', true, params ),
 
 
   // ======我的======

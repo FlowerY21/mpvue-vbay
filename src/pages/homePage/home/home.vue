@@ -23,7 +23,7 @@
         <input type="text" placeholder="搜索商家或商品" placeholder-style="color:#7ED6CB;">
       </div>
     </div>
-    <img-swiper></img-swiper>
+    <img-swiper :imgList="swiperList"></img-swiper>
     <tab-swiper ref="tabSwiper" :tabList="businessTypeList" :locationCode="locationCode"></tab-swiper>
   </div>
 </template>
@@ -45,6 +45,7 @@
         longitude:'',
         vbc:'',
         locationCode:'',
+        swiperList:[],
       }
     },
     mounted(){
@@ -59,12 +60,14 @@
           });
 
           _this.getBusinessTypeList();
+          _this.getSwiperList();
         }
       });
     },
     methods:{
       changeLocation(code){
         this.locationCode = code;
+        this.getSwiperList();
         console.log('this',this.locationCode)
       },
       async getBusinessTypeList(){
@@ -84,6 +87,15 @@
           url: '../search/main'
         })
       },
+      async getSwiperList(){
+        const params = {
+          location : this.locationCode
+        };
+        const result = await this.$api.garefullyChosenList(params);
+        if (result.code == '200'){
+          this.swiperList = result.result
+        }
+      }
     },
   }
 </script>

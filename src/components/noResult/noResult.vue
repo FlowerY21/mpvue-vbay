@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="listLength ==0 " class="is-bottom">暂无数据</p>
+    <p v-if="listLength == 0 " class="is-bottom">暂无数据</p>
     <p class="is-bottom" v-else>{{isBottom ? '已全部加载' : '下拉刷新'}}</p>
   </div>
 </template>
