@@ -21,7 +21,7 @@
         </div>
         <div class="activity-img-box" :style="'background: url('+info.activity.pic+') center/cover no-repeat'"></div>
       </div>
-      {{info.business}}
+
       <div v-else-if="info.business">
         <div class="flex-row flow-justify">
           <h3 class="title">{{info.business.name}}</h3>
@@ -35,7 +35,7 @@
           <p class="nextTitle">{{info.distance}} {{info.distanceUnit}} | {{info.business.address}}</p>
         </div>
         <p class="nextTitle">{{info.business.carefullyChosenSort}}, {{info.business.location}}</p>
-        <div class="flex-row flow-justify" v-if="info.business.video.length>0">
+        <div class="flex-row flow-justify" v-if="info.business && info.business.video && info.business.video.length>0">
           <div v-for="(item,index2) in info.business.video" :key="index2">
             <!--<div class="list-img-box" :style="'background: url('+item.videoUrl+') center/cover no-repeat'"></div>-->
             <!--<p class="list-img-name">{{item.name}}</p>-->
